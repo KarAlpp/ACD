@@ -189,7 +189,6 @@ const ProductDetails = () => {
       setIsButtonDisabled(false);
     }
   };
-  
 
   if (loading) return <div className="py-10 text-center">Loading product details...</div>;
   if (!selectedProduct) return <div className="py-10 text-center">Product not found</div>;
@@ -212,13 +211,15 @@ const ProductDetails = () => {
             ))}
           </div>
 
-          <div className="w-full">
-            <img
-              src={selectedImage || '/default-image.jpg'}
-              alt="Selected Product"
-              className="w-full object-cover rounded-lg h-160"
-              onError={(e) => { e.target.src = '/default-image.jpg'; }}
-            />
+          <div className="w-full flex items-center justify-center bg-white">
+            <div className="max-h-[600px] max-w-full flex items-center justify-center bg-white p-4">
+              <img
+                src={selectedImage || '/default-image.jpg'}
+                alt="Selected Product"
+                className="max-h-full max-w-full object-contain"
+                onError={(e) => { e.target.src = '/default-image.jpg'; }}
+              />
+            </div>
           </div>
 
           <div className="space-y-4">

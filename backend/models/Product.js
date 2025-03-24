@@ -10,7 +10,7 @@ const productSchema = new mongoose.Schema(
         sku: { type: String, unique: true, required: true },
         category: { type: String, required: true },
         brand: { type: String, default: "Unknown" },
-        sizes: { type: [String], required: true },
+        sizes: { type: [String], default: "Not Specified" },
         colors: { type: [String], required: true },
         collections: { type: String, required: false },
         material: { type: String, default: "Not Specified" },
@@ -43,7 +43,7 @@ const productSchema = new mongoose.Schema(
             },
             default: false
         },
-        weight: { type: Number },
+        weight: { type: Number,default: "Not Specified" },
     },
     { timestamps: true }
 );

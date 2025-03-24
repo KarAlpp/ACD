@@ -18,8 +18,8 @@ const ProductManagement = () => {
     sku: '',
     imageUrl: '',
     countInStock: '',
-    weight: '',
-    sizes: '',
+    
+   
     colors: '',
     tags: '',
     metaTitle: '',
@@ -50,9 +50,7 @@ const ProductManagement = () => {
       sku: newProduct.sku,
       images: [newProduct.imageUrl],
       countInStock: parseInt(newProduct.countInStock),
-      weight: parseFloat(newProduct.weight),
       
-      sizes: newProduct.sizes.split(',').map(s => s.trim()),
       colors: newProduct.colors.split(',').map(c => c.trim()),
       tags: newProduct.tags.split(',').map(t => t.trim()),
       metaTitle: newProduct.metaTitle,
@@ -76,7 +74,6 @@ const ProductManagement = () => {
           sku: '',
           imageUrl: '',
           countInStock: '',
-          weight: '',
           sizes: '',
           colors: '',
           tags: '',
@@ -108,8 +105,8 @@ const ProductManagement = () => {
         <div className='grid grid-cols-2 gap-4'>
           {[
             'name', 'description', 'price', 'category', 'brand', 'sku', 'imageUrl',
-            'countInStock', 'weight',
-             'sizes', 'colors', 'tags',
+            'countInStock', 
+             'colors', 'tags',
             'metaTitle', 'metaDescription', 'metaKeywords'
           ].map((field) => (
             <input
@@ -120,7 +117,7 @@ const ProductManagement = () => {
               placeholder={field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
               className='p-2 border rounded'
               required={field !== 'imageUrl'}
-              type={['price', 'weight', 'countInStock', 'length', 'width', 'height'].includes(field) ? 'number' : 'text'}
+              type={['price',  'countInStock', 'length', 'width', 'height'].includes(field) ? 'number' : 'text'}
             />
           ))}
         </div>
