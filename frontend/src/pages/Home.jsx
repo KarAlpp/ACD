@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import Hero from '../components/Layout/Hero';
-import Indooroutdoor from '../components/Products/IndoorOutdoor';
+import Indooroutdoor from '../components/Products/Indooroutdoor';
 import NewArrivals from '../components/Products/NewArrivals';
 import Bestseller from '../components/Common/Bestseller'; // Best Sellers Component
 import ProductDetails from '../components/Common/ProductDetails';
