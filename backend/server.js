@@ -18,10 +18,7 @@ const port = process.env.PORT || 9000;
 
 // ✅ Properly Apply CORS Middleware (BEFORE Routes)
 app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        "https://acd-3euz-h0rsc8uhp-alps-projects-f1f79be2.vercel.app"
-    ],
+    origin: "*",  // Allow all origins (not recommended for production)
     credentials: true,
 }));
 
