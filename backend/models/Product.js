@@ -12,7 +12,7 @@ const productSchema = new mongoose.Schema(
         brand: { type: String, default: "Unknown" },
         sizes: { type: [String], required: true },
         colors: { type: [String], required: true },
-        collections: { type: String, required: true },
+        collections: { type: String, required: false },
         material: { type: String, default: "Not Specified" },
         door: { type: String, enum: ["indoor", "outdoor"] },
         images: {
@@ -25,7 +25,7 @@ const productSchema = new mongoose.Schema(
                 message: "At least one image is required",
             },
         },
-        altText: { type: String },
+        altText: { type: String ,default: false},
         isFeatured: { type: Boolean, default: false },
         isPublished: { type: Boolean, default: false },
         rating: { type: Number, default: 0 },
@@ -36,9 +36,12 @@ const productSchema = new mongoose.Schema(
         metaDescription: { type: String },
         metaKeywords: { type: [String] },
         dimensions: {
-            length: { type: Number },
-            width: { type: Number },
-            height: { type: Number },
+            type: {
+                length: { type: Number },
+                width: { type: Number },
+                height: { type: Number }
+            },
+            default: false
         },
         weight: { type: Number },
     },

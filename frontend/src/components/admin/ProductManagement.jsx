@@ -18,13 +18,7 @@ const ProductManagement = () => {
     sku: '',
     imageUrl: '',
     countInStock: '',
-    material: '',
     weight: '',
-    length: '',
-    width: '',
-    height: '',
-    altText: '',
-    collections: '',
     sizes: '',
     colors: '',
     tags: '',
@@ -56,15 +50,8 @@ const ProductManagement = () => {
       sku: newProduct.sku,
       images: [newProduct.imageUrl],
       countInStock: parseInt(newProduct.countInStock),
-      material: newProduct.material,
       weight: parseFloat(newProduct.weight),
-      dimensions: {
-        length: parseFloat(newProduct.length),
-        width: parseFloat(newProduct.width),
-        height: parseFloat(newProduct.height),
-      },
-      altText: newProduct.altText,
-      collections: newProduct.collections,
+      
       sizes: newProduct.sizes.split(',').map(s => s.trim()),
       colors: newProduct.colors.split(',').map(c => c.trim()),
       tags: newProduct.tags.split(',').map(t => t.trim()),
@@ -89,13 +76,7 @@ const ProductManagement = () => {
           sku: '',
           imageUrl: '',
           countInStock: '',
-          material: '',
           weight: '',
-          length: '',
-          width: '',
-          height: '',
-          altText: '',
-          collections: '',
           sizes: '',
           colors: '',
           tags: '',
@@ -127,9 +108,8 @@ const ProductManagement = () => {
         <div className='grid grid-cols-2 gap-4'>
           {[
             'name', 'description', 'price', 'category', 'brand', 'sku', 'imageUrl',
-            'countInStock', 'material', 'weight',
-            'length', 'width', 'height',
-            'altText', 'collections', 'sizes', 'colors', 'tags',
+            'countInStock', 'weight',
+             'sizes', 'colors', 'tags',
             'metaTitle', 'metaDescription', 'metaKeywords'
           ].map((field) => (
             <input

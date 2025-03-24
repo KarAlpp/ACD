@@ -153,20 +153,24 @@ const CollectionPage = () => {
                 ) : error ? (
                     <p className="text-red-500">{error}</p>
                 ) : (
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {products.map((product, index) => (
-                            <div key={product._id || index} className="rounded-lg p-4 hover:shadow-lg transition">
-                                <Link to={`/product/${product._id}`}>
-                                    <img
-                                        src={product.images || '/default-image.jpg'}
-                                        alt={product.altText || product.name || 'Product'}
-                                        className="w-90 h-120 object-cover rounded-md"
-                                        onError={(e) => (e.target.src = '/default-image.jpg')}
-                                    />
-                                    <h3 className="mt-2 text-lg font-semibold">{product.name || 'No Name'}</h3>
-                                    <p className="text-gray-600">${product.price || 'N/A'}</p>
-                                </Link>
-                            </div>
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+{products.map((product, index) => (
+                            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
+                            <Link to={`/product/${product._id}`}>
+                              <img
+                                src={product.images || '/default-image.jpg'}
+                                alt={product.altText || product.name || 'Product'}
+                                className="w-full h-[250px] sm:h-[280px] object-cover object-center"
+                                onError={(e) => (e.target.src = '/default-image.jpg')}
+                              />
+                              <div className="p-4">
+                                <h3 className="text-lg font-medium text-gray-800 truncate">{product.name || 'No Name'}</h3>
+                                <p className="text-primary font-semibold mt-1">${product.price || 'N/A'}</p>
+                              </div>
+                            </Link>
+                          </div>
+                          
+                          
                         ))}
                     </div>
                 )}
