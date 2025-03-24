@@ -17,7 +17,7 @@ const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [navDrawerOpen, setNavDrawerOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(4);
+  const [cartCount, setCartCount] = useState(0);
   const [isHomeDecorOpen, setIsHomeDecorOpen] = useState(false);
   const [isGardenDecorOpen, setIsGardenDecorOpen] = useState(false);
   const { user } = useSelector((state) => state.auth); // <-- eksik buydu
@@ -183,14 +183,16 @@ const Navbar = () => {
           <div className="flex items-center space-x-6">
             <Searchbar />
             
-            <button onClick={toggleCartDrawer} className="text-white text-2xl transition duration-300 hover:text-gray-400 relative">
-              <FiShoppingBag />
-              {cartCount > 0 && (
-                <div className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                  {cartCount}
-                </div>
-              )}
-            </button>
+            <button 
+  onClick={toggleCartDrawer} 
+  className="text-white text-2xl transition duration-300 hover:text-gray-400 relative"
+>
+  <FiShoppingBag />
+  <div className="absolute -top-2 -right-2 bg-white text-black text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center border border-black">
+    {cartCount}
+  </div>
+</button>
+
             
             <Link
       to={user ? "/profile" : "/login"}

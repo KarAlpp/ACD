@@ -22,6 +22,7 @@ import store from "./redux/store";
 import AboutUs from './pages/AboutUsPage';
 import ContactUs from './pages/Contacts';
 import ProtectedRoute from './components/Common/ProtectedRoute';
+import PrivacyPolicyPage from './pages/Privacy';
 const App = () => {
   return (
     <Provider store = {store}>
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="my-orders" element={<MyOrdersPage />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path ="ContactUs" element = {<ContactUs/>}/>
+          <Route path ="privacy" element = {<PrivacyPolicyPage/>}/>
         </Route>
 
         {/* Admin Routes */}
