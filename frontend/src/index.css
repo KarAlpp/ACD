@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+#root {
+  font-family: "Arimo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+
+}
+
+
+/* Navbar animation styles */
+.floating-nav {
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(26, 26, 26, 0.85);
+  border-radius: 16px;
+}
+
+/* Audio indicator animation */
+@keyframes pulseHeight {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.5);
+  }
+}
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE ve Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+.animate-pulse {
+  animation: pulseHeight 1s ease infinite;
+}
+
+/* Hover effect for nav links */
+.nav-hover-btn {
+  position: relative;
+  color: white;
+  margin: 0 1rem;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.nav-hover-btn:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.nav-hover-btn:hover:after {
+  width: 100%;
+}
+
+.nav-hover-btn:hover {
+  color: #f0f0f0;
+}
+.indoor-outdoor-container {
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+scrollbar-width: none;
