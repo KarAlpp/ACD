@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MayAlsoLike = ({ productId }) => {
+const MayAlsoLike = ({ productId, currentProduct }) => {
   const containerRef = useRef(null);
   const [similarProducts, setSimilarProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -65,6 +65,16 @@ const MayAlsoLike = ({ productId }) => {
     return '/default-image.jpg';
   };
 
+  // Function to generate collection link with filters
+  const generateCollectionLink = (product) => {
+    const filters = [];
+    if (product.door) filters.push(`door=${encodeURIComponent(product.door)}`);
+    if (product.category) filters.push(`category=${encodeURIComponent(product.category)}`);
+    if (product.brand) filters.push(`brand=${encodeURIComponent(product.brand)}`);
+    
+    return `/collections/all${filters.length > 0 ? `?${filters.join('&')}` : ''}`;
+  };
+
   return (
     <div className="mt-16 flex justify-center">
       <div className="w-full max-w-screen-xl px-4">
@@ -116,6 +126,17 @@ const ProductDetails = () => {
   const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [breadcrumbs, setBreadcrumbs] = useState([]);
+
+  // Function to generate collection link with filters
+  const generateCollectionLink = (category, brand, door) => {
+    const filters = [];
+    if (door) filters.push(`door=${encodeURIComponent(door)}`);
+    if (category) filters.push(`category=${encodeURIComponent(category)}`);
+    if (brand) filters.push(`brand=${encodeURIComponent(brand)}`);
+    
+    return `/collections/all${filters.length > 0 ? `?${filters.join('&')}` : ''}`;
+  };
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -127,6 +148,19 @@ const ProductDetails = () => {
           setSelectedImage(topProduct?.images?.[0]?.url || topProduct?.images?.[0] || '');
           setSelectedColor(topProduct?.colors?.[0] || '');
           setSelectedSize(topProduct?.sizes?.[0] || '');
+          const generatedBreadcrumbs = [
+            { label: 'Anasayfa', path: '/' },
+            ...(topProduct.category ? [{ 
+              label: topProduct.category, 
+              path: generateCollectionLink(topProduct.category, topProduct.brand, topProduct.door) 
+            }] : []),
+            ...(topProduct.brand ? [{ 
+              label: topProduct.brand, 
+              path: generateCollectionLink(topProduct.category, topProduct.brand, topProduct.door) 
+            }] : []),
+            { label: topProduct.name, path: '' }
+          ];
+          setBreadcrumbs(generatedBreadcrumbs);
           setLoading(false);
         } catch (error) {
           console.error("Error fetching top rated product:", error);
@@ -144,6 +178,19 @@ const ProductDetails = () => {
         setSelectedImage(productData?.images?.[0]?.url || productData?.images?.[0] || '');
         setSelectedColor(productData?.colors?.[0] || '');
         setSelectedSize(productData?.sizes?.[0] || '');
+        const generatedBreadcrumbs = [
+          { label: 'Anasayfa', path: '/' },
+          ...(productData.category ? [{ 
+            label: productData.category, 
+            path: generateCollectionLink(productData.category, productData.brand, productData.door) 
+          }] : []),
+          ...(productData.brand ? [{ 
+            label: productData.brand, 
+            path: generateCollectionLink(productData.category, productData.brand, productData.door) 
+          }] : []),
+          { label: productData.name, path: '' }
+        ];
+        setBreadcrumbs(generatedBreadcrumbs);
       } catch (error) {
         console.error("Error fetching product details:", error);
         toast.error('Failed to load product details');
@@ -168,14 +215,7 @@ const ProductDetails = () => {
     }
     setIsButtonDisabled(true);
     try {
-      // Instead of making the API call, we'll simulate a failed request
-      // Comment out or remove the actual API call:
-      // await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/cart`, {...});
-      
-      // Display an error message
       toast.error("Sorry, this feature is temporarily unavailable. Please contact us via WhatsApp for assistance.");
-      
-      // Optional: You could log that someone tried to use the cart feature
       console.log("Cart attempt:", {
         productId: selectedProduct._id,
         quantity,
@@ -197,8 +237,28 @@ const ProductDetails = () => {
 
   return (
     <>
+      {/* Breadcrumb with padding to avoid fixed navbar overlap */}
+      <div className="px-4 py-3 pt-20  text-sm">
+  <div className="max-w-6xl mx-auto flex items-center">
+
+          {breadcrumbs.map((crumb, index) => (
+            <React.Fragment key={crumb.label}>
+              {index > 0 && <span className="mx-2 text-gray-400">/</span>}
+              {crumb.path ? (
+                <Link to={crumb.path} className="hover:text-black">
+                  {crumb.label}
+                </Link>
+              ) : (
+                <span className="font-semibold">{crumb.label}</span>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+
       <div className="py-24 bg-white">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[80px_1fr_1fr] gap-8">
+          {/* Thumbnail Images */}
           <div className="hidden md:flex flex-col space-y-4">
             {selectedProduct.images?.map((image, index) => (
               <img
@@ -211,6 +271,7 @@ const ProductDetails = () => {
             ))}
           </div>
 
+          {/* Main Image */}
           <div className="w-full flex items-center justify-center bg-white">
             <div className="max-h-[600px] max-w-full flex items-center justify-center bg-white p-4">
               <img
@@ -222,11 +283,13 @@ const ProductDetails = () => {
             </div>
           </div>
 
+          {/* Product Info */}
           <div className="space-y-4">
             <h1 className="text-3xl font-semibold">{selectedProduct.name}</h1>
             <p className="text-2xl text-gray-600">${selectedProduct.price}</p>
             <p className="text-gray-700">{selectedProduct.description}</p>
 
+            {/* Color Options */}
             <div>
               <p className="text-gray-700 font-medium">Color:</p>
               <div className="flex gap-2 mt-2">
@@ -241,6 +304,7 @@ const ProductDetails = () => {
               </div>
             </div>
 
+            {/* Size Options */}
             <div>
               <p className="text-gray-700 font-medium">Size:</p>
               <div className="flex gap-2 mt-2">
@@ -256,6 +320,25 @@ const ProductDetails = () => {
               </div>
             </div>
 
+            {/* Door Type Selection */}
+            <div>
+              <p className="text-gray-700 font-medium">Type:</p>
+              <div className="flex gap-2 mt-2">
+                {["indoor", "outdoor"].map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => setSelectedProduct((prev) => ({ ...prev, door: type }))}
+                    className={`px-4 py-2 rounded border ${
+                      selectedProduct.door === type ? 'border-black text-black' : 'border-gray-300'
+                    }`}
+                  >
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Quantity */}
             <div>
               <p className="text-gray-700 font-medium">Quantity:</p>
               <div className="flex items-center space-x-4 mt-2">
@@ -264,7 +347,8 @@ const ProductDetails = () => {
                 <button onClick={increaseQuantity} className="px-3 py-1 bg-gray-200 rounded text-lg">+</button>
               </div>
             </div>
-
+              
+            {/* Add to Cart */}
             <button
               onClick={handleAddToCart}
               disabled={isButtonDisabled}
@@ -273,6 +357,7 @@ const ProductDetails = () => {
               {isButtonDisabled ? 'Adding...' : 'Add to Cart'}
             </button>
 
+            {/* WhatsApp Contact */}
             <div className="mt-8 flex items-center gap-2">
               <a
                 href="https://wa.me/+905332362513"
@@ -289,6 +374,7 @@ const ProductDetails = () => {
               </a>
             </div>
 
+            {/* Meta Details */}
             <div className="mt-10 text-sm text-gray-600 space-y-2">
               {category && <p><strong>Category:</strong> {category}</p>}
               {brand && <p><strong>Brand:</strong> {brand}</p>}
@@ -307,7 +393,7 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      <MayAlsoLike productId={id || selectedProduct?._id} />
+      <MayAlsoLike productId={id || selectedProduct?._id} currentProduct={selectedProduct} />
       <Toaster position="top-center" />
     </>
   );

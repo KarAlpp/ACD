@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema(
         colors: { type: [String], required: true },
         collections: { type: String, required: false },
         material: { type: String, default: "Not Specified" },
-        door: { type: String, enum: ["indoor", "outdoor"] },
+        door: { type: [String], enum: ["indoor", "outdoor"] },
         images: {
             type: [String], // ✅ Ensured Array format
             required: true,
@@ -30,7 +30,7 @@ const productSchema = new mongoose.Schema(
         isPublished: { type: Boolean, default: false },
         rating: { type: Number, default: 0 },
         numReviews: { type: Number, default: 0 },
-        tags: { type: [String] },
+        tags: { type: [String], default: "Not Specified" },
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
         metaTitle: { type: String },
         metaDescription: { type: String },

@@ -17,7 +17,8 @@ const EditProductPage = () => {
     categories: [''],
     colors: [''],
     sku: '',
-    images: ['']
+    images: [''],
+    door: '' // New field for door type
   });
 
   // Fetch product details on mount
@@ -41,7 +42,8 @@ const EditProductPage = () => {
           categories: formatAsArray(data.categories || data.category),
           colors: formatAsArray(data.colors || data.color),
           sku: data.sku || '',
-          images: formatAsArray(data.images)
+          images: formatAsArray(data.images),
+          door: data.door || '' // Add door type to product data
         });
       } catch (error) {
         console.error('Error fetching product:', error);
@@ -245,6 +247,22 @@ const EditProductPage = () => {
           />
         </div>
         
+        {/* New Door Type Input */}
+        <div className='mb-4'>
+          <label className='block text-gray-700'>Door Type</label>
+          <select
+            name='door'
+            value={product.door}
+            onChange={handleChange}
+            className='w-full p-2 border rounded'
+            required
+          >
+            <option value="">Select Door Type</option>
+            <option value="indoor">Indoor</option>
+            <option value="outdoor">Outdoor</option>
+          </select>
+        </div>
+
         {/* Multi-value inputs */}
         {renderMultiValueInput('sizes', 'Sizes')}
         {renderMultiValueInput('colors', 'Colors')}

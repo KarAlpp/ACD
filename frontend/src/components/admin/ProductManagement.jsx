@@ -21,7 +21,7 @@ const ProductManagement = () => {
     
    
     colors: '',
-    tags: '',
+    door: '',
     metaTitle: '',
     metaDescription: '',
     metaKeywords: '',
@@ -52,7 +52,7 @@ const ProductManagement = () => {
       countInStock: parseInt(newProduct.countInStock),
       
       colors: newProduct.colors.split(',').map(c => c.trim()),
-      tags: newProduct.tags.split(',').map(t => t.trim()),
+      door: newProduct.door.split(',').map(t => t.trim()),
       metaTitle: newProduct.metaTitle,
       metaDescription: newProduct.metaDescription,
       metaKeywords: newProduct.metaKeywords.split(',').map(k => k.trim()),
@@ -76,7 +76,7 @@ const ProductManagement = () => {
           countInStock: '',
           sizes: '',
           colors: '',
-          tags: '',
+          door: '',
           metaTitle: '',
           metaDescription: '',
           metaKeywords: '',
@@ -106,7 +106,7 @@ const ProductManagement = () => {
           {[
             'name', 'description', 'price', 'category', 'brand', 'sku', 'imageUrl',
             'countInStock', 
-             'colors', 'tags',
+             'colors', 'door',
             'metaTitle', 'metaDescription', 'metaKeywords'
           ].map((field) => (
             <input
