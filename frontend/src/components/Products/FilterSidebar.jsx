@@ -6,7 +6,7 @@ const FilterSidebar = () => {
 
   const [filters, setFilters] = useState({
     category: [],
-    door: '',       // düzeltildi (önce array'di)
+    door: '',
     color: '',
     sizes: [],
     brand: '',
@@ -35,26 +35,39 @@ const FilterSidebar = () => {
     });
   }, []); // sadece ilk render'da çalışır
 
+  const handleCategoryToggle = (category) => {
+    setFilters((prev) => {
+      const currentCategories = prev.category;
+      const isCategorySelected = currentCategories.includes(category);
+      
+      return {
+        ...prev,
+        category: isCategorySelected 
+          ? currentCategories.filter(cat => cat !== category)
+          : [...currentCategories, category]
+      };
+    });
+  };
+
+  const handleDoorFilter = (value) => {
+    setFilters((prev) => ({
+      ...prev,
+      door: prev.door === value ? '' : value
+    }));
+  };
+
   const handleFilterChange = (e) => {
-    const { name, value, checked, type } = e.target;
+    const { name, value, type } = e.target;
 
     setFilters((prev) => {
       const updated = { ...prev };
-
-      if (type === "checkbox") {
-        updated[name] = checked
-          ? [...prev[name], value]
-          : prev[name].filter((item) => item !== value);
-      } else {
-        updated[name] = value;
-      }
-
+      updated[name] = value;
       return updated;
     });
   };
 
   useEffect(() => {
-    const currentParams = new URLSearchParams(searchParams); // mevcut parametreleri al
+    const currentParams = new URLSearchParams(searchParams);
   
     // filtre parametrelerini temizle
     currentParams.delete('category');
@@ -91,7 +104,7 @@ const FilterSidebar = () => {
               name="category"
               value={cat}
               checked={filters.category.includes(cat)}
-              onChange={handleFilterChange}
+              onChange={() => handleCategoryToggle(cat)}
               className="mr-2 accent-black"
             />
             {cat}
@@ -101,21 +114,21 @@ const FilterSidebar = () => {
 
       {/* Door (Indoor / Outdoor) */}
       <div className="mb-4">
-        <label className="block font-medium">Furniture Type</label>
-        {doors.map((d) => (
-          <label key={d} className="flex items-center">
-            <input
-              type="radio"
-              name="door"
-              value={d}
-              checked={filters.door === d}
-              onChange={handleFilterChange}
-              className="mr-2 accent-black"
-            />
-            {d}
-          </label>
-        ))}
-      </div>
+  <label className="block font-medium">Furniture Type</label>
+  {doors.map((d) => (
+    <button
+      key={d}
+      type="button"
+      onClick={() => handleDoorFilter(d)}
+      className={`mr-2 mb-2 px-3 py-1 border rounded ${
+        filters.door === d ? 'bg-black text-white' : 'bg-white text-black border-gray-400'
+      }`}
+    >
+      {d}
+    </button>
+  ))}
+</div>
+
 
       {/* Color */}
       <div className="mb-4">
@@ -147,7 +160,15 @@ const FilterSidebar = () => {
               name="sizes"
               value={size}
               checked={filters.sizes.includes(size)}
-              onChange={handleFilterChange}
+              onChange={(e) => {
+                const { value, checked } = e.target;
+                setFilters((prev) => ({
+                  ...prev,
+                  sizes: checked 
+                    ? [...prev.sizes, value]
+                    : prev.sizes.filter(item => item !== value)
+                }));
+              }}
               className="mr-2 accent-black"
             />
             {size}
