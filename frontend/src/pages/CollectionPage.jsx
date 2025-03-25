@@ -153,26 +153,24 @@ const CollectionPage = () => {
                 ) : error ? (
                     <p className="text-red-500">{error}</p>
                 ) : (
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-{products.map((product, index) => (
-                            <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300">
-                            <Link to={`/product/${product._id}`}>
-                              <img
-                                src={product.images || '/default-image.jpg'}
-                                alt={product.altText || product.name || 'Product'}
-                                className="w-full h-[250px] sm:h-[280px] object-cover object-center"
-                                onError={(e) => (e.target.src = '/default-image.jpg')}
-                              />
-                              <div className="p-4">
-                                <h3 className="text-lg font-medium text-gray-800 truncate">{product.name || 'No Name'}</h3>
-                                <p className="text-primary font-semibold mt-1">${product.price || 'N/A'}</p>
-                              </div>
-                            </Link>
-                          </div>
-                          
-                          
-                        ))}
-                    </div>
+<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+  {products.map((product, index) => (
+    <div key={product._id || index} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-all duration-300 text-center">
+      <Link to={`/product/${product._id}`}>
+        <img
+          src={product.images || '/default-image.jpg'}
+          alt={product.altText || product.name || 'Product'}
+          className="w-full h-40 object-contain p-2"
+          onError={(e) => (e.target.src = '/default-image.jpg')}
+        />
+        <div className="px-2 pb-3">
+          <h3 className="text-sm font-medium text-gray-800 truncate">{product.name || 'No Name'}</h3>
+          <p className="text-primary text-sm font-semibold">${product.price || 'N/A'}</p>
+        </div>
+      </Link>
+    </div>
+  ))}
+</div>
                 )}
             </div>
         </div>

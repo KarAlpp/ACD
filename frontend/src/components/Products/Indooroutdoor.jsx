@@ -134,7 +134,7 @@ const IndoorOutdoor = () => {
                     >
                         <h2 className="text-2xl font-bold text-gray-900 mb-3">Outdoor Products</h2>
                         <Link
-                            to="/collections/all?category=outdoor"
+                            to="/collections/all?door=outdoor"
                             className="text-gray-900 font-semibold underline hover:text-gray-700 transition"
                         >
                             Shop Now

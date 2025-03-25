@@ -320,24 +320,7 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            {/* Door Type Selection */}
-            <div>
-              <p className="text-gray-700 font-medium">Type:</p>
-              <div className="flex gap-2 mt-2">
-                {["indoor", "outdoor"].map((type) => (
-                  <button
-                    key={type}
-                    onClick={() => setSelectedProduct((prev) => ({ ...prev, door: type }))}
-                    className={`px-4 py-2 rounded border ${
-                      selectedProduct.door === type ? 'border-black text-black' : 'border-gray-300'
-                    }`}
-                  >
-                    {type.charAt(0).toUpperCase() + type.slice(1)}
-                  </button>
-                ))}
-              </div>
-            </div>
-
+        
             {/* Quantity */}
             <div>
               <p className="text-gray-700 font-medium">Quantity:</p>

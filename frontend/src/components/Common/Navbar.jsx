@@ -124,7 +124,7 @@ const Navbar = () => {
                     onMouseEnter={() => setIsHomeDecorOpen(true)}
                     onMouseLeave={() => setIsHomeDecorOpen(false)}
                   >
-     <Link to="/collections/all?category=Indoor&size=&material=&brand=&maxPrice=100000" className="block px-4 py-5 text-gray-800 hover:bg-gray-200">
+     <Link to="/collections/all?door=Indoor&size=&material=&brand=&maxPrice=100000" className="block px-4 py-5 text-gray-800 hover:bg-gray-200">
     Indoor Products ▸
   </Link>
   {isHomeDecorOpen && (
@@ -148,7 +148,7 @@ const Navbar = () => {
   onMouseEnter={() => setIsGardenDecorOpen(true)}
   onMouseLeave={() => setIsGardenDecorOpen(false)}
 >
-  <Link to="/collections/all?category=Outdoor&size=&material=&brand=&maxPrice=100000" className="block px-4 py-5 text-gray-800 hover:bg-gray-200">
+  <Link to="/collections/all?door=Outdoor&size=&material=&brand=&maxPrice=100000" className="block px-4 py-5 text-gray-800 hover:bg-gray-200">
     Outdoor Products ▸
   </Link>
   {isGardenDecorOpen && (
