@@ -252,9 +252,7 @@ const Navbar = () => {
     </div>
 
     {/* Sağ Görsel Alanı */}
-    <div className="w-1/2 bg-cover bg-center" style={{ backgroundImage: "url('/images/dekorasyon.jpg')" }}>
-      {/* Boşluk ya da içerik eklenebilir */}
-    </div>
+    
   </div>
 )}
     </>

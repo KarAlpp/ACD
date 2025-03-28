@@ -75,7 +75,7 @@ const Login = () => {
 
             <div className="hidden md:block md:w-1/2">
                 <img
-                    src="https://res.cloudinary.com/dj6xgjo5y/image/upload/v1742774692/lovlkxwjcszl7ytyumwc.png"
+                    src="https://scontent.fist7-1.fna.fbcdn.net/v/t39.30808-6/462456358_2924646494360941_8348179606554643587_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=R5wZPPM_fyAQ7kNvgHN1YRh&_nc_oc=AdkB4-FOSZrHAZJlgw-Qa8Fv-P89gWdutYOEsw1PYDVJMtB13d9TkpW63h5TQyfd_uY&_nc_zt=23&_nc_ht=scontent.fist7-1.fna&_nc_gid=1ejbpyf6lN_KIjAYowcMSQ&oh=00_AYEOKarruWQS6Xk-sPuQLkkE5SHULSTD8Xn47ZPwQfsqLQ&oe=67EC05F7"
 
                     alt="Login Page"
                     className="w-full h-full object-cover"
