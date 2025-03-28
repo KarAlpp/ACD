@@ -96,7 +96,7 @@ const Navbar = () => {
   ref={navContainerRef}
   className="fixed top-0 left-0 right-0 z-40 h-auto transition-all duration-700"
 >
-  <nav className="w-full flex items-center justify-between py-4 px-6 bg-[#1A1A1A] opacity-80 transition-opacity duration-300 hover:opacity-100">
+  <nav className="w-full flex items-center justify-between py-4 px-6 bg-[#1A1A1A] opacity-60 transition-opacity duration-300 hover:opacity-100">
     {/* Diğer navbar içeriği tamamen aynı kalıyor */}
 
           <div className="flex items-center space-x-8">
@@ -156,15 +156,24 @@ const Navbar = () => {
       <Link to="/collections/all?category=Bench&size=&material=&brand=&maxPrice=100000" className="block px-4 py-5 text-gray-800 hover:bg-gray-200">
         Bench
       </Link>
-      <Link to="/collections/all?category=Bergere&size=&material=&brand=&maxPrice=100000" className="block px-4 py-5 text-gray-800 hover:bg-gray-200">
-        Bergère
-      </Link>
-      <Link to="/collections/all?category=Sofa+Couch&size=&material=&brand=&maxPrice=100000" className="block px-4 py-5 text-gray-800 hover:bg-gray-200">
-        Sofa & Couch
-      </Link>
-      <Link to="/collections/all?category=Table+Chair&size=&material=&brand=&maxPrice=100000" className="block px-4 py-5 text-gray-800 hover:bg-gray-200">
-        Table & Chair
-      </Link>
+      <Link 
+  to={`/collections/all?category=${encodeURIComponent("Bergère")}&size=&material=&brand=&maxPrice=100000`} 
+  className="block px-4 py-5 text-gray-800 hover:bg-gray-200"
+>
+  Bergère
+</Link>
+      <Link 
+  to={`/collections/all?category=${encodeURIComponent('Sofa & Couch')}&size=&material=&brand=&maxPrice=100000`} 
+  className="block px-4 py-5 text-gray-800 hover:bg-gray-200"
+>
+  Sofa & Couch
+</Link>
+<Link 
+  to={`/collections/all?category=${encodeURIComponent('Table & Chair')}&size=&material=&brand=&maxPrice=100000`} 
+  className="block px-4 py-5 text-gray-800 hover:bg-gray-200"
+>
+  Table & Chair
+</Link>
       <Link to="/collections/all?category=Pouf&size=&material=&brand=&maxPrice=100000" className="block px-4 py-5 text-gray-800 hover:bg-gray-200">
         Pouf
       </Link>
@@ -222,25 +231,34 @@ const Navbar = () => {
       <CardDrawer drawerOpen={drawerOpen} toggleCartDrawer={toggleCartDrawer} />
       
       {navDrawerOpen && (
-        <div className="absolute left-0 mt-0 w-48 bg-white/80 backdrop-blur-md shadow-xl rounded-xl z-50 border border-gray-200">
-        <div className="flex justify-end p-4">
-            <button onClick={toggleNavDrawer}>
-              <IoMdClose className="h-6 w-6 text-gray-600" />
-            </button>
-          </div>
-          <div className="p-4">
-            <h2 className="text-lg font-semibold">Menü</h2>
-            <nav className="space-y-4">
-              <Link to="/" className="block py-2 text-lg text-gray-600 hover:text-gray-800">Anasayfa</Link>
-              <Link to="/products" className="block py-2 text-lg text-gray-600 hover:text-gray-800">Ev Dekorasyon</Link>
-              <Link to="/products" className="block py-2 text-lg text-gray-600 hover:text-gray-800">Bahçe Dekorasyon</Link>
-              <Link to="/brands" className="block py-2 text-lg text-gray-600 hover:text-gray-800">Markalar</Link>
-            </nav>
-          </div>
-        </div>
-      )}
+  <div className="fixed inset-0 z-50 flex">
+    {/* Sol Menü Alanı */}
+    <div className="w-1/2 bg-white/80 backdrop-blur-md shadow-xl p-6 flex flex-col justify-between border-r border-gray-200">
+      <div className="flex justify-end">
+        <button onClick={toggleNavDrawer}>
+          <IoMdClose className="h-6 w-6 text-gray-600" />
+        </button>
+      </div>
+      <div>
+        <h2 className="text-2xl font-semibold mb-6 text-gray-800">Menü</h2>
+        <nav className="space-y-4">
+          <Link to="/" className="block text-lg text-gray-700 hover:text-gray-900">Anasayfa</Link>
+          <Link to="collections/all?door=indoor" className="block text-lg text-gray-700 hover:text-gray-900">Ev Dekorasyon</Link>
+          <Link to="/collections/all?door=outdoor" className="block text-lg text-gray-700 hover:text-gray-900">Bahçe Dekorasyon</Link>
+          <Link to="/collections/all?brand=FERMOB" className="block text-lg text-gray-700 hover:text-gray-900">Markalar</Link>
+        </nav>
+      </div>
+      <p className="text-sm text-gray-500">&copy; 2025 ACDStore</p>
+    </div>
+
+    {/* Sağ Görsel Alanı */}
+    <div className="w-1/2 bg-cover bg-center" style={{ backgroundImage: "url('/images/dekorasyon.jpg')" }}>
+      {/* Boşluk ya da içerik eklenebilir */}
+    </div>
+  </div>
+)}
     </>
   );
-};
+}
 
 export default Navbar;

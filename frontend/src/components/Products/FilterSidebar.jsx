@@ -12,7 +12,7 @@ const FilterSidebar = () => {
     brand: '',
   });
 
-  const categories = ["Living Room", "Bedroom ", "Dining Room", "Garden Bench ", "Bergère ", "Sofa & Couch" ,"Table & Chair","Pouf", "Swing "];
+  const categories = ["Living Room", "Bedroom", "Dining Room", "Garden Bench ", "Bergère", "Sofa & Couch" ,"Table & Chair","Pouf", "Swing "];
   const colors = ["White", "Black", "Brown", "Gray", "Beige", "Wood"];
   const sizes = ["Small", "Medium", "Large"];
   const materials = ["SIFAS", "OLTA", "FERMOB"];
