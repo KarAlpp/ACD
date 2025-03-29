@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Brands = () => {
   const brands = [
@@ -27,11 +27,37 @@ const Brands = () => {
     },
   ];
 
+  const [currentBrandIndex, setCurrentBrandIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBrandIndex((prevIndex) => (prevIndex + 1) % brands.length);
+    }, 1500); // biraz daha yavaş döngü
+
+    return () => clearInterval(interval);
+  }, [brands.length]);
+
   return (
     <section className="relative overflow-hidden mt-12">
       <div className="absolute inset-0 bg-[#d7eedc] top-[25%]"></div>
       <div className="absolute inset-0 bg-white bottom-[75%]"></div>
 
+      {/* Başlık */}
+      <div className="relative max-w-6xl mx-auto py-8 px-4 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          CHECK OUT OUR NEWEST BRAND COLLECTIONS
+        </h2>
+        <div className="h-10">
+          <p
+            key={brands[currentBrandIndex].name}
+            className="text-2xl md:text-3xl font-bold text-emerald-600 animate-fade"
+          >
+            {brands[currentBrandIndex].name}
+          </p>
+        </div>
+      </div>
+
+      {/* Marka Kartları */}
       <div className="relative max-w-6xl mx-auto py-16 px-4 grid grid-cols-1 md:grid-cols-2 gap-0">
         {brands.map((brand, index) => (
           <a
