@@ -10,6 +10,8 @@ import MayAlsoLike from '../components/Common/MayAlsoLike';
 import TopFurniture from '../components/Common/TopFurniture';
 import FeaturedCollection from '../components/Common/FeaturedCollection';
 import { fetchProductByFilters } from '../redux/slices/productSlice';
+import MonthlyClubSection from './MonthlyClubSection ';
+import Brands from '../components/Products/Brands';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -41,11 +43,12 @@ const Home = () => {
             <Hero />
             <Indooroutdoor />
             <NewArrivals />
-            
+            <Brands/>
             {/* ✅ Pass bestSellerProducts as props */}
             <Bestseller products={bestSellerProducts} /> 
 
             <ProductDetails />
+            <MonthlyClubSection /> 
             <MayAlsoLike />
             <TopFurniture />
             <FeaturedCollection />
