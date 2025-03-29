@@ -2,36 +2,39 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {
-      fontFamily: {
-        zentry: ["zentry", "sans-serif"],
-        general: ["general", "sans-serif"],
-        "circular-web": ["circular-web", "sans-serif"],
-        "robert-medium": ["robert-medium", "sans-serif"],
-        "robert-regular": ["robert-regular", "sans-serif"],
+    container: {
+      center: true,
+      padding: '2vw', // ekrana göre padding
+      screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1440px",
       },
-      colors: {
-        blue: {
-          50: "#DFDFF0",
-          75: "#dfdff2",
-          100: "#F0F2FA",
-          200: "#010101",
-          300: "#4FB7DD",
-        },
-        violet: {
-          300: "#5724ff",
-        },
-        yellow: {
-          100: "#8e983f",
-          300: "#edff66",
-        },
-
-        // 🌫️ Yeni grimsi arka plan tonları:
-        background: {
-          DEFAULT: "#f3f3f3",
-          soft: "#eaeaea",
-          dark: "#dcdcdc",
-        },
+    },
+    extend: {
+      fontSize: {
+        // vw tabanlı font size'lar
+        xs: "clamp(0.75rem, 0.9vw, 0.875rem)",
+        sm: "clamp(0.875rem, 1vw, 1rem)",
+        base: "clamp(1rem, 1.2vw, 1.125rem)",
+        lg: "clamp(1.125rem, 1.4vw, 1.25rem)",
+        xl: "clamp(1.25rem, 1.6vw, 1.5rem)",
+        "2xl": "clamp(1.5rem, 2vw, 2rem)",
+        "3xl": "clamp(1.875rem, 2.5vw, 2.25rem)",
+        "4xl": "clamp(2.25rem, 3vw, 3rem)",
+      },
+      spacing: {
+        // Oranlı spacing'ler (vw tabanlı)
+        "5vw": "5vw",
+        "10vw": "10vw",
+        "2vh": "2vh",
+        "5vh": "5vh",
+        "10vh": "10vh",
+      },
+      maxWidth: {
+        screen: "1920px", // sabit canvas hissi
       },
     },
   },

@@ -14,7 +14,7 @@ const IndoorOutdoor = () => {
         const ctx = gsap.context(() => {
             const elements = containerRef.current.children;
 
-            // Indoor animasyonu (soldan gel, 3D dönüş)
+            // Indoor animasyonu
             gsap.fromTo(
                 elements[0],
                 {
@@ -41,7 +41,7 @@ const IndoorOutdoor = () => {
                 }
             );
 
-            // Outdoor animasyonu (sağdan gel, 3D dönüş)
+            // Outdoor animasyonu
             gsap.fromTo(
                 elements[1],
                 {
@@ -69,10 +69,9 @@ const IndoorOutdoor = () => {
             );
         }, containerRef);
 
-        return () => ctx.revert();  // GSAP context temizleme
+        return () => ctx.revert();
     }, []);
 
-    // Hover animasyonu
     const handleMouseEnter = (e) => {
         gsap.to(e.currentTarget, {
             scale: 1.1,
@@ -96,38 +95,50 @@ const IndoorOutdoor = () => {
     };
 
     return (
-        <section className="py-16 px-4 lg:px-0">
-            <div ref={containerRef} className="container mx-auto flex flex-col md:flex-row gap-8">
-                
-                {/* Indoor Section */}
+        <section className="py-16 px-4">
+            <div
+                ref={containerRef}
+                className="mx-auto flex flex-col md:flex-row gap-8"
+                style={{ width: '1280px', maxWidth: '100%' }}
+            >
+                {/* Indoor */}
                 <div
-                    className="relative flex-1 cursor-pointer"
+                    className="relative cursor-pointer"
+                    style={{ width: '100%', height: '800px' }}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
-                    <img src={indoorimage} alt="Indoor" className="w-full h-full object-cover" />
+                    <img
+                        src={indoorimage}
+                        alt="Indoor"
+                        className="w-full h-full object-cover"
+                    />
                     <div
                         className="absolute bottom-8 left-8 p-6 rounded-lg shadow-lg z-50"
                         style={{ backgroundColor: 'rgba(255, 255, 255, 0.75)' }}
                     >
                         <h2 className="text-2xl font-bold text-gray-900 mb-3">Indoor Products</h2>
-                        <Link to="/collections/all?door=indoor"
-
-    className="text-gray-900 font-semibold underline hover:text-gray-700 transition"
->
-    Shop Now
-</Link>
-
+                        <Link
+                            to="/collections/all?door=indoor"
+                            className="text-gray-900 font-semibold underline hover:text-gray-700 transition"
+                        >
+                            Shop Now
+                        </Link>
                     </div>
                 </div>
 
-                {/* Outdoor Section */}
+                {/* Outdoor */}
                 <div
-                    className="relative flex-1 cursor-pointer"
+                    className="relative cursor-pointer"
+                    style={{ width: '100%', height: '800px' }}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
-                    <img src={outdoorimage} alt="Outdoor" className="w-full h-full object-cover" />
+                    <img
+                        src={outdoorimage}
+                        alt="Outdoor"
+                        className="w-full h-full object-cover"
+                    />
                     <div
                         className="absolute bottom-8 left-8 p-6 rounded-lg shadow-lg z-50"
                         style={{ backgroundColor: 'rgba(255, 255, 255, 0.75)' }}
@@ -141,7 +152,6 @@ const IndoorOutdoor = () => {
                         </Link>
                     </div>
                 </div>
-
             </div>
         </section>
     );
