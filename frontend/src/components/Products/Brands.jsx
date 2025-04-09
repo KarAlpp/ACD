@@ -63,7 +63,7 @@ const Brands = () => {
           <a
             key={brand.name}
             href={brand.link}
-            className={`rounded-xl shadow-lg overflow-hidden group transform transition-transform duration-300 hover:scale-[1.02] ${
+            className={`rounded-xl shadow-lg overflow-hidden group transition-transform duration-300 ${
               [
                 "-translate-y--translate-x-6",
                 "-translate-y- translate-x-6",
@@ -71,6 +71,7 @@ const Brands = () => {
                 "translate-y-4 translate-x-6",
               ][index]
             }`}
+            
           >
             <div className="relative h-[400px] overflow-hidden">
               <img

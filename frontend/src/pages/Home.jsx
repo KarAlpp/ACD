@@ -12,6 +12,7 @@ import FeaturedCollection from '../components/Common/FeaturedCollection';
 import { fetchProductByFilters } from '../redux/slices/productSlice';
 import MonthlyClubSection from './MonthlyClubSection ';
 import Brands from '../components/Products/Brands';
+import HoverPreview from '../components/Layout/HoverPreview';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -45,6 +46,8 @@ const Home = () => {
             <NewArrivals />
             <Brands/>
             {/* ✅ Pass bestSellerProducts as props */}
+            <HoverPreview />
+
             <Bestseller products={bestSellerProducts} /> 
 
             <ProductDetails />

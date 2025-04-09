@@ -99,12 +99,12 @@ const IndoorOutdoor = () => {
             <div
                 ref={containerRef}
                 className="mx-auto flex flex-col md:flex-row gap-8"
-                style={{ width: '1280px', maxWidth: '100%' }}
+                style={{ width: '1600px', maxWidth: '100%' }}
             >
                 {/* Indoor */}
                 <div
                     className="relative cursor-pointer"
-                    style={{ width: '100%', height: '800px' }}
+                    style={{ width: '100%', height: '1000px' }}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
@@ -130,7 +130,7 @@ const IndoorOutdoor = () => {
                 {/* Outdoor */}
                 <div
                     className="relative cursor-pointer"
-                    style={{ width: '100%', height: '800px' }}
+                    style={{ width: '100%', height: '1000px' }}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
