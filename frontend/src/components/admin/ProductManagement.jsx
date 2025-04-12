@@ -101,30 +101,89 @@ const ProductManagement = () => {
 
       {/* ✅ ÜRÜN EKLEME FORMU */}
       <form onSubmit={handleAddProduct} className='space-y-4 mb-10'>
-        <h2 className='text-xl font-semibold'>Add New Product</h2>
-        <div className='grid grid-cols-2 gap-4'>
-          {[
-            'name', 'description', 'price', 'category', 'brand', 'sku', 'imageUrl',
-            'countInStock', 
-             'colors', 'door',
-            'metaTitle', 'metaDescription', 'metaKeywords'
-          ].map((field) => (
+  <h2 className='text-xl font-semibold'>Add New Product</h2>
+
+  <div className='grid grid-cols-2 gap-4'>
+    {/* Normal inputlar */}
+    {[
+      'name', 'description', 'price', 'sku', 'imageUrl',
+      'countInStock', 'colors', 'metaTitle', 'metaDescription', 'metaKeywords'
+    ].map((field) => (
+      <input
+        key={field}
+        name={field}
+        value={newProduct[field]}
+        onChange={handleInputChange}
+        placeholder={field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+        className='p-2 border rounded'
+        required={field !== 'imageUrl'}
+        type={['price', 'countInStock'].includes(field) ? 'number' : 'text'}
+      />
+    ))}
+
+    {/* ✅ CATEGORY SELECT */}
+    <div>
+      <label className='block mb-1 font-medium'>Category</label>
+      <select
+        name='category'
+        value={newProduct.category}
+        onChange={handleInputChange}
+        className='p-2 border rounded w-full'
+        required
+      >
+        <option value=''>Select Category</option>
+        {[
+          'Living Room', 'Bedroom', 'Dining Room', 'Garden Bench',
+          'Bergère', 'Sofa & Couch', 'Table & Chair', 'Pouf', 'Swing'
+        ].map((cat) => (
+          <option key={cat} value={cat}>{cat}</option>
+        ))}
+      </select>
+    </div>
+
+    {/* ✅ BRAND SELECT */}
+    <div>
+      <label className='block mb-1 font-medium'>Brand</label>
+      <select
+        name='brand'
+        value={newProduct.brand}
+        onChange={handleInputChange}
+        className='p-2 border rounded w-full'
+        required
+      >
+        <option value=''>Select Brand</option>
+        {['SIFAS', 'OLTA', 'FERMOB'].map((b) => (
+          <option key={b} value={b}>{b}</option>
+        ))}
+      </select>
+    </div>
+
+    {/* ✅ DOOR RADIO BUTTON */}
+    <div className="col-span-2">
+      <label className='block mb-1 font-medium'>Door Type</label>
+      <div className='flex gap-6'>
+        {['indoor', 'outdoor'].map((type) => (
+          <label key={type} className='flex items-center gap-2'>
             <input
-              key={field}
-              name={field}
-              value={newProduct[field]}
+              type='radio'
+              name='door'
+              value={type}
+              checked={newProduct.door === type}
               onChange={handleInputChange}
-              placeholder={field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
-              className='p-2 border rounded'
-              required={field !== 'imageUrl'}
-              type={['price',  'countInStock', 'length', 'width', 'height'].includes(field) ? 'number' : 'text'}
+              required
             />
-          ))}
-        </div>
-        <button type='submit' className='bg-green-600 text-white px-4 py-2 rounded'>
-          Add Product
-        </button>
-      </form>
+            {type.charAt(0).toUpperCase() + type.slice(1)}
+          </label>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <button type='submit' className='bg-green-600 text-white px-4 py-2 rounded'>
+    Add Product
+  </button>
+</form>
+
 
       {/* ✅ YÜKLENİYOR & HATA MESAJLARI */}
       {loading && <p>Loading...</p>}

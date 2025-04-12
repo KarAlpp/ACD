@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.6.1",
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/vite": "^4.0.8",
+    "@xyflow/react": "^12.5.5",
     "axios": "^1.8.3",
     "clsx": "^2.1.1",
     "framer-motion": "^12.6.2",
