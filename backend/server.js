@@ -10,31 +10,36 @@ const uploadRoutes = require("./routes/uploadRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const productAdminRoutes = require("./routes/productAdminRoutes");
 
+// ✅ .env dosyasını yükle
 dotenv.config();
+
+// ✅ MongoDB bağlantısını kur
 connectDB();
 
 const app = express();
 const port = process.env.PORT || 9000;
 
+// ✅ CORS ayarı (sıralama önemli)
 const allowedOrigins = [
-    'http://localhost:5173',  // Vite kullanıyorsun, doğru port bu
-    // (varsa)
-    'https://acd-3euz.vercel.app' // (production için)
-  ];
-  
-  app.use(cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true,
-  }));
-  
+  'http://localhost:5173',            // Vite dev ortamı
+  'https://acd-3euz.vercel.app'       // Production frontend
+];
 
-// ✅ Body Parser Middleware
+app.use(cors({
+  origin: function (origin, callback) {
+    console.log("🧪 Gelen origin:", origin);
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.warn("❌ CORS reddedildi:", origin);
+      callback(new Error('Not allowed by CORS: ' + origin));
+    }
+  },
+  credentials: true
+}));
+
+
+// ✅ JSON body parse et
 app.use(express.json());
 
 // ✅ API Routes
@@ -48,16 +53,16 @@ app.use("/api/admin/products", productAdminRoutes);
 
 // ✅ Root Route
 app.get("/", (req, res) => {
-    res.send("Selamün Aleyküm");
+  res.send("Selamün Aleyküm");
 });
 
-// ✅ Global Error Handling Middleware (Do NOT put CORS here)
+// ✅ Global Error Handler
 app.use((err, req, res, next) => {
-    console.error("Internal Server Error:", err);
-    res.status(500).json({ message: "Internal Server Error", error: err.message });
+  console.error("Internal Server Error:", err);
+  res.status(500).json({ message: "Internal Server Error", error: err.message });
 });
 
-// ✅ Start Server
+// ✅ Server Başlat
 app.listen(port, () => {
-    console.log(`🚀 Server is running on http://localhost:${port}`);
+  console.log(`🚀 Server is running on http://localhost:${port}`);
 });
