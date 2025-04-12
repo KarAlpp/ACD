@@ -1,7 +1,8 @@
+// src/utils/axiosInstance.js
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL,
+  baseURL: 'https://acd-backend.onrender.com', // Render'dan gelen backend URL
   withCredentials: true,
 });
 
