@@ -16,11 +16,23 @@ connectDB();
 const app = express();
 const port = process.env.PORT || 9000;
 
-// ✅ Properly Apply CORS Middleware (BEFORE Routes)
-app.use(cors({
-    origin: "*",  // Allow all origins (not recommended for production)
+const allowedOrigins = [
+    'http://localhost:5173',  // Vite kullanıyorsun, doğru port bu
+    // (varsa)
+    'https://acd-3euz.vercel.app' // (production için)
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
-}));
+  }));
+  
 
 // ✅ Body Parser Middleware
 app.use(express.json());
