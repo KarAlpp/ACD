@@ -4,6 +4,8 @@ import { Toaster, toast } from 'sonner';
 import axios from 'axios';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,7 +101,7 @@ const MayAlsoLike = ({ productId, currentProduct }) => {
                 <img
                   src={getImageUrl(product)}
                   alt={product.name || 'Product Image'}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                   onError={(e) => (e.target.src = '/default-image.jpg')}
                 />
               </div>
@@ -272,16 +274,20 @@ const ProductDetails = () => {
           </div>
 
           {/* Main Image */}
-          <div className="w-full flex items-center justify-center bg-white">
-            <div className="max-h-[600px] max-w-full flex items-center justify-center bg-white p-4">
-              <img
-                src={selectedImage || '/default-image.jpg'}
-                alt="Selected Product"
-                className="max-h-full max-w-full object-contain"
-                onError={(e) => { e.target.src = '/default-image.jpg'; }}
-              />
-            </div>
-          </div>
+         {/* Main Image */}
+<div className="w-full flex items-center justify-center bg-white">
+  <div className="max-h-[600px] max-w-full flex items-center justify-center bg-white p-4">
+    <Zoom>
+      <img
+        src={selectedImage || '/default-image.jpg'}
+        alt="Selected Product"
+        className="max-h-full max-w-full object-contain cursor-zoom-in"
+        onError={(e) => { e.target.src = '/default-image.jpg'; }}
+      />
+    </Zoom>
+  </div>
+</div>
+
 
           {/* Product Info */}
           <div className="space-y-4">

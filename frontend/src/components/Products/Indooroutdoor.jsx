@@ -98,7 +98,7 @@ const IndoorOutdoor = () => {
         <section className="py-16 px-4">
             <div
                 ref={containerRef}
-                className="mx-auto flex flex-col md:flex-row gap-8"
+                className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 px-4"
                 style={{ width: '1600px', maxWidth: '100%' }}
             >
                 {/* Indoor */}

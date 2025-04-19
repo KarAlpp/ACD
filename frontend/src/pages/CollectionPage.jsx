@@ -157,12 +157,32 @@ const CollectionPage = () => {
   {products.map((product, index) => (
     <div key={product._id || index} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-all duration-300 text-center">
       <Link to={`/product/${product._id}`}>
-        <img
-          src={product.images || '/default-image.jpg'}
-          alt={product.altText || product.name || 'Product'}
-          className="w-full h-40 object-contain p-2"
-          onError={(e) => (e.target.src = '/default-image.jpg')}
-        />
+      <div className="w-full h-60 bg-white p-2 relative group overflow-hidden">
+  {/* İlk görsel */}
+  <img
+    src={Array.isArray(product.images) ? (product.images[0]?.url || product.images[0]) : product.images}
+    alt={product.altText || product.name || 'Product'}
+    className={`w-full h-full object-contain absolute inset-0 z-10 transition-all duration-700 ease-in-out ${
+      Array.isArray(product.images) && product.images[1]
+        ? 'group-hover:translate-x-[-100%] group-hover:opacity-0'
+        : 'group-hover:scale-105'
+    }`}
+    onError={(e) => (e.target.src = '/default-image.jpg')}
+  />
+
+  {/* 2. görsel varsa göster */}
+  {Array.isArray(product.images) && product.images[1] && (
+    <img
+      src={product.images[1]?.url || product.images[1]}
+      alt="Preview"
+      className="w-full h-full object-contain absolute inset-0 z-20 opacity-0 translate-x-full 
+      group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-700 ease-in-out"
+      onError={(e) => (e.target.src = '/default-image.jpg')}
+    />
+  )}
+</div>
+
+
         <div className="px-2 pb-3">
           <h3 className="text-sm font-medium text-gray-800 truncate">{product.name || 'No Name'}</h3>
           <p className="text-primary text-sm font-semibold">${product.price || 'N/A'}</p>
