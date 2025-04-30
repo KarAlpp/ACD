@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-#root {
-  font-family: "Arimo", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
+/* Montserrat font importu için Google Fonts linki index.html dosyasına eklendiğinden emin ol */
+body, #root {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-style: normal;
-
+  font-weight: 300;
 }
 
+/* Global styles */
 
 /* Navbar animation styles */
 .floating-nav {
@@ -26,15 +26,6 @@
     transform: scaleY(1.5);
   }
 }
-@layer utilities {
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none; /* IE ve Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-}
 
 .animate-pulse {
   animation: pulseHeight 1s ease infinite;
@@ -48,7 +39,6 @@
   padding: 0.5rem 0;
   transition: all 0.3s ease;
 }
-
 
 .nav-hover-btn:after {
   content: '';
@@ -68,12 +58,20 @@
 .nav-hover-btn:hover {
   color: #f0f0f0;
 }
+
 .indoor-outdoor-container {
   overflow-x: hidden;
 }
-::-webkit-scrollbar {
-  display: none;
+
+/* Scrollbar hide utility - Tüm tarayıcılar için */
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
-/* Firefox */
-scrollbar-width: none;
+/* Global*

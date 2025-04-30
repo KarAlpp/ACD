@@ -1,68 +1,86 @@
 const products = [
-    {
-        name: "Modern fafafafa Table",
-        description: "A high-quality wooden table with a minimalist design.",
-        price: 299.99,
-        discountPrice: 249.99,
-        countInStock: 15,
-        sku: "WOOD-TABLE-001",
-        category: "Furniture",
-        brand: "HomeDecor",
-        sizes: ["Small", "Medium", "Large"],
-        colors: ["Brown", "Black", "White"],
-        collections: "Luxury Collection",
-        material: "Wood",
-        door: "indoor",
-        images: ["https://res.cloudinary.com/dj6xgjo5y/image/upload/v1742259484/zxtv9x57fbw65mj9ihki.jpg", "https://example.com/image2.jpg"], // ✅ Array olarak düzeltildi
-        altText: "A wooden table",
-        isFeatured: true,
-        isPublished: true,
-        rating: 4.5,
-        numReviews: 10,
-        tags: ["table", "wood", "home"],
-        user: "67d70aa08bd1c965c9123eb5", // Admin user ID
-        metaTitle: "Modern Wooden Table - Best Home Furniture",
-        metaDescription: "Buy this modern wooden table for your home, available in different sizes.",
-        metaKeywords: ["wooden table", "furniture", "home decor"],
-        dimensions: {
-            length: 120,
-            width: 60,
-            height: 75
-        },
-        weight: 15.5
-    },
-    {
-        name: "Luxury Sofa Set",
-        description: "Comfortable and stylish luxury sofa set for modern homes.",
-        price: 599.99,
-        discountPrice: 499.99,
-        countInStock: 10,
-        sku: "SOFA-SET-002",
-        category: "Furniture",
-        brand: "LuxuryHome",
-        sizes: ["2-Seater", "3-Seater", "Corner"],
-        colors: ["Gray", "Beige", "Dark Blue"],
-        collections: "Premium Collection",
-        material: "Fabric & Wood",
-        door: "indoor",
-        images: ["https://example.com/sofa1.jpg", "https://example.com/sofa2.jpg"], // ✅ Array olarak düzeltildi
-        altText: "Luxury sofa set",
-        isFeatured: true,
-        isPublished: true,
-        rating: 4.8,
-        numReviews: 20,
-        tags: ["sofa", "furniture", "living room"],
-        user: "67d70aa08bd1c965c9123eb5",
-        metaTitle: "Luxury Sofa Set - Modern Living Room Furniture",
-        metaDescription: "Upgrade your living room with this stylish and comfortable sofa set.",
-        metaKeywords: ["sofa", "luxury furniture", "home comfort"],
-        dimensions: {
-            length: 200,
-            width: 90,
-            height: 85
-        },
-        weight: 40
-    }
-];
+  {
+    name: "YUNOS - SOLAR FLOOR LAMP H.180 CM",
+    description: "A high-quality  chair with a minimalist design.",
+    price: 510,
+    discountPrice: 265.99,
+    countInStock: 15,
+    ref: "3297",
+    category: "Lamp",
+    brand: "Fermob",
+colors: [
+"main",
+"Black Cherry",
+"Clay Grey",
+"Lapilli Grey",
+"Gingerbread",
+"Rosemary",
+"Technical",
 
+
+],
+
+    packings: ["x1"],
+    collection: "YUNOS",
+    material: "glass",
+    door: ["outdoor"],
+    images: {
+"main": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/products/3297.jpg",
+"Cotton white": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_01.jpg",
+"Deep blue": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_92.jpg",
+"Acapulco blue": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_21.jpg",
+"Poppy": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_67.jpg",
+"Deep blue": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_92.jpg",
+"Blue canard": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_85.jpg",
+"Maya blue": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_e1.jpg",
+"Cactus": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_82.jpg",
+"Anthracite" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_47.jpg",
+"Black Cherry" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_b9.jpg",
+"Frosted Lemon" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_a6.jpg",
+"Clay Grey" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_a5.jpg",
+"Lapilli Grey " : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_c7.jpg",
+"Storm Grey " : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_26.jpg",
+"Marshmallow" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_d1.jpg",
+"Ice mint" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_a7.jpg",
+"Honey" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_c6.jpg",
+"Nutmeg" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_14.jpg",
+"Red ochre" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_20.jpg",
+"Candied orange " : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_e2.jpg",
+"Gingerbread" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_e2.jpg",
+"Pesto" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_d3.jpg",
+"Chili" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_43.jpg",
+"Rosemary" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_48.jpg",
+"Liquorice" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_42.jpg",
+"Tonka" : " https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_e3.jpg",
+"Cedar green" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_02.jpg",
+"Willow Green" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_65.jpg",
+"Technical": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/products/vuesecondaire/3297_vuesecondaire_0.jpg"
+
+
+    },
+    altText: "Cool chair for outdoor use",
+    isFeatured: true,
+    isPublished: true,
+    rating: 4.7,
+    numReviews: 10,
+    tags: ["Chair", "switch", "home"],
+    user: "67d70aa08bd1c965c9123eb5", // Admin user ID
+    metaTitle: "Chair fermob",
+    metaDescription: "Buy this modern wooden table for your home, available in different colors.",
+    metaKeywords: ["wooden table", "furniture", "home decor"],
+    technicalSheet: [
+"Weight: 8",
+"Luminous flux :800",
+"Min. Battery life (100%) :10",
+"2",
+
+    ],
+    dimensions: {
+      length: 120,
+      width: 60,
+      height: 75
+    },
+    weight: 15.5
+  }
+]
 module.exports = products;

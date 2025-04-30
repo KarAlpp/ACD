@@ -12,12 +12,13 @@ const router = express.Router();
 router.post("/", protect, admin, async (req, res) => {
     try {
         const { 
-            name, description, price, discountPrice, countInStock, sku, 
-            category, brand, sizes, colors, collections, material, door, 
+            name, description, price, discountPrice, countInStock, ref, 
+            category, brand, colors, collection, material, door, 
             images, altText, isFeatured, isPublished, rating, numReviews, 
             tags, metaTitle, metaDescription, metaKeywords, dimensions, 
-            weight 
+            weight, technicalSheet, packings // <-- BURAYA packings ekle
         } = req.body;
+        
 
         const product = new Product({
             name,
@@ -25,12 +26,12 @@ router.post("/", protect, admin, async (req, res) => {
             price,
             discountPrice,
             countInStock,
-            sku,
+            ref,
             category,
             brand,
-            sizes,
             colors,
-            collections,
+            packings, // 🔥 burada
+            collection,
             material,
             door,
             images,
@@ -40,14 +41,15 @@ router.post("/", protect, admin, async (req, res) => {
             rating,
             numReviews,
             tags,
-            user: req.user.id, // Assigning the logged-in user as product creator
+            user: req.user.id,
             metaTitle,
             metaDescription,
             metaKeywords,
             dimensions,
-            weight
+            weight,
+            technicalSheet
         });
-
+        
         const savedProduct = await product.save();
         res.status(201).json(savedProduct);
     } catch (error) {
@@ -119,42 +121,33 @@ router.get("/filter", async (req, res) => {
         console.log("✅ `/filter` route hit");
         console.log("Received Query Params:", req.query);
         
-        const { collection, size, color, minPrice, maxPrice, sortBy, 
+        const { collection, color, minPrice, maxPrice, sortBy, 
             door, search, material, brand, limit, category } = req.query;
 
         let query = {};
         let sort = {}; 
 
-        // 🔹 Koleksiyon filtresi (Boş değilse ekle)
+        // 🔹 Collection filter (Add if not empty)
         if (collection && collection.trim() !== "" && collection.toLowerCase() !== "all") {
-            query.collections = { $regex: collection, $options: "i" };
+            query.collection = { $regex: collection, $options: "i" };
         }
         
-
-        // 🔹 Malzeme filtresi (Boş değilse ekle)
+        // 🔹 Material filter (Add if not empty)
         if (material && material.trim() !== "") {
             query.material = { $regex: material, $options: "i" };
         }
 
-        // 🔹 Marka filtresi (Boş değilse ekle)
+        // 🔹 Brand filter (Add if not empty)
         if (brand && brand.trim() !== "") {
             query.brand = { $regex: brand, $options: "i" };
         }
 
-        // 🔹 Kapı (door) filtresi (Boş değilse ekle)
+        // 🔹 Door filter (Add if not empty)
         if (door && door.trim() !== "") {
             query.door = { $regex: door, $options: "i" };
         }
 
-        // 🔹 Beden (size) filtresi (Boş değilse ekle)
-        if (size) {
-            const sizeValues = Array.isArray(size) ? size : size.split(",");
-            if (sizeValues.length > 0) {
-                query.sizes = { $in: sizeValues.map(s => new RegExp(s, "i")) };
-            }
-        }
-
-        // 🔹 Renk (color) filtresi (Boş değilse ekle)
+        // 🔹 Color filter (Add if not empty)
         if (color) {
             const colorValues = Array.isArray(color) ? color : color.split(",");
             if (colorValues.length > 0) {
@@ -162,19 +155,19 @@ router.get("/filter", async (req, res) => {
             }
         }
 
-        // 🔹 Kategori filtresi (Boş değilse ekle)
+        // 🔹 Category filter (Add if not empty)
         if (category && category.trim() !== "") {
             query.category = { $regex: category, $options: "i" };
         }
 
-        // 🔹 Fiyat filtresi (Boş değilse ekle)
+        // 🔹 Price filter (Add if not empty)
         if (minPrice || maxPrice) {
             query.price = {};
             if (!isNaN(minPrice) && minPrice.trim() !== "") query.price.$gte = Number(minPrice);
             if (!isNaN(maxPrice) && maxPrice.trim() !== "") query.price.$lte = Number(maxPrice);
         }
 
-        // 🔹 Arama (search) filtresi (Boş değilse ekle)
+        // 🔹 Search filter (Add if not empty)
         if (search && search.trim() !== "") {
             query.$or = [
                 { name: { $regex: search, $options: "i" } }, 
@@ -183,7 +176,7 @@ router.get("/filter", async (req, res) => {
             ];
         }
 
-        // 🔹 Sıralama (sortBy)
+        // 🔹 Sorting
         if (sortBy) {
             switch (sortBy) {
                 case "priceAsc":
@@ -199,31 +192,31 @@ router.get("/filter", async (req, res) => {
                     sort = { createdAt: -1 };
                     break;
                 default:
-                    sort = { createdAt: -1 }; // Default sıralama
+                    sort = { createdAt: -1 }; // Default sorting
                     break;
             }
         } else {
             sort = { createdAt: -1 };
         }
 
-        // 🔹 Debug için query'yi ekrana yazdır
+        // 🔹 Debug query
         console.log("🔍 Query Built:", JSON.stringify(query, null, 2));
         console.log("📊 Sort Options:", JSON.stringify(sort, null, 2));
 
-        // 🔹 Varsayılan limit
+        // 🔹 Default limit
         const limitValue = !isNaN(limit) ? Number(limit) : 20;
 
-        // 🔹 Filtrelenen ürünleri çek
+        // 🔹 Get filtered products
         const products = await Product.find(query)
             .sort(sort)
             .limit(limitValue);
 
-        // 🔹 Toplam ürün sayısını al
+        // 🔹 Get total product count
         const totalCount = await Product.countDocuments(query);
 
         console.log(`Returning ${products.length} products`);
 
-        // Sonuçları dön
+        // Return results
         res.json({
             products,
             total: totalCount,
@@ -312,12 +305,13 @@ router.get("/:id", async (req, res) => {
 router.put("/:id", protect, admin, async (req, res) => {
     try {
         const { 
-            name, description, price, discountPrice, countInStock, sku, 
-            category, brand, sizes, colors, collections, material, door, 
+            name, description, price, discountPrice, countInStock, ref, 
+            category, brand, colors, packings, collection, material, door, 
             images, altText, isFeatured, isPublished, rating, numReviews, 
             tags, metaTitle, metaDescription, metaKeywords, dimensions, 
-            weight 
+            weight, technicalSheet 
         } = req.body;
+        
 
         const product = await Product.findById(req.params.id);
 
@@ -331,12 +325,13 @@ router.put("/:id", protect, admin, async (req, res) => {
         product.price = price ?? product.price;
         product.discountPrice = discountPrice ?? product.discountPrice;
         product.countInStock = countInStock ?? product.countInStock;
-        product.sku = sku ?? product.sku;
+        product.ref = ref ?? product.ref;
         product.category = category ?? product.category;
         product.brand = brand ?? product.brand;
-        product.sizes = sizes ?? product.sizes;
         product.colors = colors ?? product.colors;
-        product.collections = collections ?? product.collections;
+        product.packings = packings ?? product.packings;
+
+        product.collection = collection ?? product.collection;
         product.material = material ?? product.material;
         product.door = door ?? product.door;
         product.images = images ?? product.images;
@@ -351,7 +346,8 @@ router.put("/:id", protect, admin, async (req, res) => {
         product.metaKeywords = metaKeywords ?? product.metaKeywords;
         product.dimensions = dimensions ?? product.dimensions;
         product.weight = weight ?? product.weight;
-
+        product.technicalSheet = technicalSheet ?? product.technicalSheet;
+        
         const updatedProduct = await product.save();
         res.json(updatedProduct);
     } catch (error) {

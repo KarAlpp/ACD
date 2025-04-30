@@ -13,6 +13,10 @@ import { fetchProductByFilters } from '../redux/slices/productSlice';
 import MonthlyClubSection from './MonthlyClubSection ';
 import Brands from '../components/Products/Brands';
 import HoverPreview from '../components/Layout/HoverPreview';
+import Standing from '../new/standing';
+import Collections from '../new/Collections';
+import Scrolldeneme from '../new/Scrolldeneme';
+import Showcase from '../new/Showcase';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -41,19 +45,22 @@ const Home = () => {
 
     return (
         <div>
+            
             <Hero />
+            
+            <Bestseller  /> 
+
+            <Collections />
+            <Standing />
             <Indooroutdoor />
-            <NewArrivals />
             <Brands/>
             {/* ✅ Pass bestSellerProducts as props */}
             <HoverPreview />
-
-            <Bestseller products={bestSellerProducts} /> 
-
-            <ProductDetails />
+            <Showcase />
             <MonthlyClubSection /> 
             <MayAlsoLike />
             <TopFurniture />
+            
             <FeaturedCollection />
         </div>
     );

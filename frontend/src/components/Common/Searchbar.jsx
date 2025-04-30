@@ -37,7 +37,7 @@ const SearchBar = () => {
 
             <input
               type="text"
-              placeholder="Ara..."
+              placeholder="SEARCH"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-12 pr-12 py-3 text-gray-900 placeholder-gray-400 focus:ring-0 focus:outline-none rounded-full"

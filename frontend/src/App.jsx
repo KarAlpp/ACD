@@ -23,6 +23,10 @@ import AboutUs from './pages/AboutUsPage';
 import ContactUs from './pages/Contacts';
 import ProtectedRoute from './components/Common/ProtectedRoute';
 import PrivacyPolicyPage from './pages/Privacy';
+import Catalogs from './pages/Catalogs';
+import CatalogDetails from './pages/CatalogDetails';
+import FermobDetails from './pages/Fermobdetails';
+import OltaProductDetail from './oltaz/OltaProductDetail';
 const App = () => {
   return (
     <Provider store={store}>
@@ -37,7 +41,6 @@ const App = () => {
               <Route path="register" element={<Register />} />
               <Route path="profile" element={<Profile />} />
               <Route path="collections/:collection" element={<CollectionPage />} />
-              <Route path="product/:id" element={<ProductDetails />} />
               <Route path="checkout" element={<CheckOut />} />
               <Route path="order-confirmation" element={<OrderConfirmationPage />} />
               <Route path="order/:id" element={<OrderDetailsPage />} />
@@ -45,8 +48,11 @@ const App = () => {
               <Route path="aboutus" element={<AboutUs />} />
               <Route path="ContactUs" element={<ContactUs />} />
               <Route path="privacy" element={<PrivacyPolicyPage />} />
-              
-            </Route>
+              <Route path="/collectionsfermob" element={<Catalogs />} />
+<Route path="/collectionsfermob/:catalogName" element={<CatalogDetails />} />
+<Route path="product/:id" element={<FermobDetails />} />
+<Route path="/olta" element={<OltaProductDetail />} />
+              </Route>
 
             {/* Admin Routes */}
             <Route

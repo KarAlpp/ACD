@@ -3,47 +3,70 @@ const dotenv = require("dotenv");
 
 const Product = require("./models/Product");
 const User = require("./models/User");
-const products = require("./data/products");
-const Cart = require("./data/Cart");
-
+const products = require("./Data/products");
 
 dotenv.config();
 
-// Connect to MongoDB with error handling
+// MongoDB'ye Bağlan
 mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
 .then(() => console.log("✅ MongoDB Connected Successfully"))
-.catch(err => console.error("❌ MongoDB Connection Error:", err));
+.catch((err) => {
+  console.error("❌ MongoDB Connection Error:", err);
+  process.exit(1);
+});
 
-const seedData = async () => { // 'asynch()' yerine 'async () => {}' düzeltildi
-    try {
-        await Product.deleteMany();
-        await User.deleteMany();
-        await Cart.deleteMany();
+// Seeding Fonksiyonu
+const seedData = async () => {
+  try {
+    // Admin User kontrolü (varsa kullan, yoksa oluştur)
+    let adminUser = await User.findOne({ email: "admin@example.com" });
 
-        const createdUser = await User.create({ // 'createduser' küçük harf düzeltildi
-            name: "Admin User",
-            email: "admin@example.com",
-            password: "123456",
-            role: "admin",
-        });
-
-        const userID = createdUser._id;
-        
-        const sampleProducts = products.map((product) => { // 'prodcudts' hatası düzeltildi
-            return { ...product, user: userID }; // 'sample Products' hatası düzeltildi
-        });
-
-        // Insert the products
-        await Product.insertMany(sampleProducts);
-        console.log("Product data seeded successfully!");
-        process.exit();
-    } catch (error) {
-        console.error("Error seeding the data", error); // 'conosle.error' hatası düzeltildi
-        process.exit(1);
+    if (!adminUser) {
+      adminUser = await User.create({
+        name: "Admin User",
+        email: "admin@example.com",
+        password: "123456",
+        role: "admin",
+      });
+      console.log("👤 Admin user created");
+    } else {
+      console.log("👤 Admin user already exists");
     }
+
+    const userID = adminUser._id;
+
+    // Ürünleri ekle (varsa atla, yoksa oluştur)
+    let addedCount = 0;
+    let skippedCount = 0;
+
+    for (const product of products) {
+      const existingProduct = await Product.findOne({ ref: product.ref });
+
+      if (!existingProduct) {
+        await Product.create({
+          ...product,
+          user: userID,
+        });
+        console.log(`✅ Product added: ${product.name}`);
+        addedCount++;
+      } else {
+        console.log(`⚡ Product already exists: ${product.name} (Skipping)`);
+        skippedCount++;
+      }
+    }
+
+    console.log("\n🎯 Seeding Summary:");
+    console.log(`- Added products: ${addedCount}`);
+    console.log(`- Skipped existing products: ${skippedCount}`);
+    console.log("✅ Seeding completed successfully!");
+    process.exit(0);
+  } catch (error) {
+    console.error("❌ Error seeding the data:", error.message);
+    process.exit(1);
+  }
 };
 
 seedData();
