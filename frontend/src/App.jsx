@@ -25,7 +25,7 @@ import ProtectedRoute from './components/Common/ProtectedRoute';
 import PrivacyPolicyPage from './pages/Privacy';
 import Catalogs from './pages/Catalogs';
 import CatalogDetails from './pages/CatalogDetails';
-import FermobDetails from './pages/Fermobdetails';
+import FermobDetails from './pages/FermobDetails';
 import OltaProductDetail from './oltaz/OltaProductDetail';
 const App = () => {
   return (
