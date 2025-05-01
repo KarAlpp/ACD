@@ -1,55 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
 import { ArrowRight, PlusCircle } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const IndoorOutdoor = () => {
   const containerRef = useRef(null);
   const [activeSection, setActiveSection] = useState(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.product-section',
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          stagger: 0.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 70%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-
-      gsap.fromTo(
-        '.section-title',
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.15,
-          delay: 0.5,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 70%',
-            toggleActions: 'play none none reverse',
-          },
-        }
-      );
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
 
   const handleSectionFocus = (section) => {
     setActiveSection(section);
@@ -124,7 +80,6 @@ const IndoorOutdoor = () => {
             onMouseLeave={handleSectionBlur}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent mix-blend-multiply" />
-            
             <div 
               className="absolute inset-0 bg-cover bg-center transition-all duration-700"
               style={{ 
@@ -132,7 +87,6 @@ const IndoorOutdoor = () => {
                 transform: activeSection === 'indoor' ? 'scale(1.05)' : 'scale(1)'
               }}
             />
-            
             <div className="content-container indoor absolute inset-0 flex flex-col justify-between p-8 text-white">
               <div>
                 <span className="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-xs font-medium mb-4">
@@ -142,14 +96,12 @@ const IndoorOutdoor = () => {
                   Elevate Your <br className="hidden md:block" />Interior Space
                 </h3>
               </div>
-              
               <div className="mt-auto">
                 {activeSection === 'indoor' && (
                   <p className="max-w-md mb-6 text-white/90 animate-fadeIn">
                     Discover our collection of elegant, comfortable furniture designed to transform your living spaces.
                   </p>
                 )}
-                
                 <Link
                   to="/collections/all?door=indoor"
                   className="group inline-flex items-center gap-2 bg-white text-gray-900 py-3 px-6 rounded-full font-medium transition-all hover:bg-blue-600 hover:text-white"
@@ -168,7 +120,6 @@ const IndoorOutdoor = () => {
             onMouseLeave={handleSectionBlur}
           >
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent mix-blend-multiply" />
-            
             <div 
               className="absolute inset-0 bg-cover bg-center transition-all duration-700"
               style={{ 
@@ -176,7 +127,6 @@ const IndoorOutdoor = () => {
                 transform: activeSection === 'outdoor' ? 'scale(1.05)' : 'scale(1)'
               }}
             />
-            
             <div className="content-container outdoor absolute inset-0 flex flex-col justify-between p-8 text-white">
               <div>
                 <span className="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-xs font-medium mb-4">
@@ -186,14 +136,12 @@ const IndoorOutdoor = () => {
                   Create Your <br className="hidden md:block" />Perfect Patio
                 </h3>
               </div>
-              
               <div className="mt-auto">
                 {activeSection === 'outdoor' && (
                   <p className="max-w-md mb-6 text-white/90 animate-fadeIn">
                     Weather-resistant, stylish furniture that brings comfort and elegance to your outdoor sanctuary.
                   </p>
                 )}
-                
                 <Link
                   to="/collections/all?door=outdoor"
                   className="group inline-flex items-center gap-2 bg-white text-gray-900 py-3 px-6 rounded-full font-medium transition-all hover:bg-blue-600 hover:text-white"
