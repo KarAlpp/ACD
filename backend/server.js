@@ -21,9 +21,14 @@ const port = process.env.PORT || 9000;
 
 // ✅ CORS ayarı (sıralama önemli)
 const allowedOrigins = [
-  'http://localhost:5173',            // Vite dev ortamı
-  'https://acd-3euz.vercel.app'       // Production frontend
+  'http://localhost:5173',
+  'https://acd-3euz.vercel.app',
+  'https://acdstore.com',
+  'https://www.acdstore.com',
+  'https://acdstore.com.tr',
+  'https://www.acdstore.com.tr'
 ];
+
 
 app.use(cors({
   origin: function (origin, callback) {
