@@ -187,7 +187,6 @@ const CollectionPage = () => {
 
                     <div className="px-2 pb-3">
                       <h3 className="text-sm font-medium text-gray-800 truncate">{product.name || 'No Name'}</h3>
-                      <p className="text-primary text-sm font-semibold">${product.price || 'N/A'}</p>
                     </div>
                   </Link>
                 </div>
