@@ -55,7 +55,7 @@ const CatalogDetails = () => {
             </div>
             <h2 className="text-md font-semibold mb-1">{product.name}</h2>
             <p className="text-sm text-gray-500 mb-2">Ref: {product.ref}</p>
-            <p className="text-blue-700 font-bold text-sm">{product.price} €</p>
+            
           </Link>
         ))}
       </div>
