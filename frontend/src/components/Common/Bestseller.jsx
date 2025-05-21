@@ -11,7 +11,7 @@ const Standing = () => {
     {
       label: "Cushion",
       src: "https://plaisirdujardin.mu/wp-content/uploads/Ava-1.jpg",
-      link: "/collections/all?category=Chair"
+      link: "/collections/all?category=Cushion"
     },
     {
       label: "Sofa & Couch",
