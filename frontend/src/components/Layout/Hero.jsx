@@ -10,7 +10,7 @@ import {
 const DURATION = 5000; // 5 saniye
 
 const Hero = () => {
-  const videoList = ['hero-2.mp4', 'hero-3.mp4'];
+  const videoList = ['heroyeni2.mp4', 'heroyeni1.mp4'];
   const [activeIndex, setActiveIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const sectionRef = useRef(null);

@@ -31,7 +31,10 @@ const Standing = () => {
 
   const wrapper = (src, type, label, width, height) => {
     return (
-      <div className={`relative group rounded-xl overflow-hidden ${width} ${height}`}>
+      <div
+        onClick={() => window.location.href = "/collectionsfermob"}
+        className={`relative group rounded-xl overflow-hidden ${width} ${height} cursor-pointer`}
+      >
         {type === "video" ? (
           <video
             src={src}
@@ -63,45 +66,44 @@ const Standing = () => {
 
   return (
     <div className="relative w-full flex justify-center bg-gray-200 py-10">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="grid grid-cols-4 grid-rows-3 gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-4 grid-rows-3 gap-4">
 
-      {/* Sol: Video - 2 sütun, 3 satır */}
-      <div className="col-span-2 row-span-3">
-        {wrapper("/videos/fermob.mp4", "video", "Main Video", "w-full", "h-full")}
+          {/* Sol: Video - 2 sütun, 3 satır */}
+          <div className="col-span-2 row-span-3">
+            {wrapper("/videos/ati.mp4", "video", "Fermob Catalogue", "w-120", "h-200")}
+          </div>
+
+          {/* Sağ üst: Değişen görsel - 2 sütun, 2 satır */}
+          <div className="col-span-2 row-span-2">
+            {wrapper(images[currentIndex], "image", "Fermob Catalogue", "w-full", "h-full")}
+          </div>
+
+          {/* Sağ alt 1: Küçük görsel */}
+          <div className="col-span-1 row-span-1">
+            {wrapper(
+              "https://patiobalconyoutdoor.com.au/cdn/shop/products/FermobBalad25cmAcapulcoBlue.jpg?v=1738313184",
+              "image",
+              "Fermob Catalogue",
+              "w-full",
+              "h-[200px]"
+            )}
+          </div>
+
+          {/* Sağ alt 2: Diğer görsel */}
+          <div className="col-span-1 row-span-1">
+            {wrapper(
+              "https://www.fermob.com/mediatheque/2_produits/SO%20O/3-ambiance/MOOON_CARBONE_SOO_GRIS_LAPILI_TARBOURIECH_VISUELS2023_ROMAIN_RICARD.jpg?optimize=medium&fit=bounds&height=700&width=700",
+              "image",
+              "Fermob Catalogue",
+              "w-full",
+              "h-[200px]"
+            )}
+          </div>
+
+        </div>
       </div>
-
-      {/* Sağ üst: Değişen görsel - 2 sütun, 2 satır */}
-      <div className="col-span-2 row-span-2">
-        {wrapper(images[currentIndex], "image", "Rotating Image", "w-full", "h-full")}
-      </div>
-
-      {/* Sağ alt 1: Küçük görsel */}
-      <div className="col-span-1 row-span-1">
-        {wrapper(
-          "https://patiobalconyoutdoor.com.au/cdn/shop/products/FermobBalad25cmAcapulcoBlue.jpg?v=1738313184",
-          "image",
-          "Bottom Left",
-          "w-full",
-          "h-[200px]"
-        )}
-      </div>
-
-      {/* Sağ alt 2: Diğer görsel */}
-      <div className="col-span-1 row-span-1">
-        {wrapper(
-          "https://www.fermob.com/mediatheque/2_produits/SO%20O/3-ambiance/MOOON_CARBONE_SOO_GRIS_LAPILI_TARBOURIECH_VISUELS2023_ROMAIN_RICARD.jpg?optimize=medium&fit=bounds&height=700&width=700",
-          "image",
-          "Bottom Right",
-          "w-full",
-          "h-[200px]"
-        )}
-      </div>
-
     </div>
-  </div>
-</div>
-
   );
 };
 
