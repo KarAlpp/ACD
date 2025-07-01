@@ -68,12 +68,12 @@ const Navbar = () => {
                 onMouseLeave={() => setIsProductsOpen(false)}
                 className="relative"
               >
-                <Link
-                  to="/collections/all"
-                  className="text-white text-2xl flex items-center pb-2 hover:text-gray-400 transition"
-                >
-                  Products
-                </Link>
+               <Link
+  to="/collections/all"
+  className="text-white text-2xl flex items-center pb-2 hover:text-gray-400 transition"
+>
+  Products
+</Link>
 
                 {isProductsOpen && (
                   <div className="absolute left-1/2 transform -translate-x-1/2 mt-0 w-screen max-w-[1200px] bg-white/80 shadow-xl rounded-md p-8 grid grid-cols-3 gap-8 z-50">
@@ -196,7 +196,32 @@ const Navbar = () => {
                 <Link to="/" className="block text-lg text-gray-700 hover:text-gray-900">Anasayfa</Link>
                 <Link to="/collections/all?door=indoor" className="block text-lg text-gray-700 hover:text-gray-900">Ev Dekorasyon</Link>
                 <Link to="/collections/all?door=outdoor" className="block text-lg text-gray-700 hover:text-gray-900">Bahçe Dekorasyon</Link>
-                <Link to="/collections/all?brand=FERMOB" className="block text-lg text-gray-700 hover:text-gray-900">Markalar</Link>
+                <details>
+                  <summary className="text-lg text-gray-700 cursor-pointer">Products</summary>
+                  <div className="ml-4 space-y-1 text-sm text-gray-700">
+                    <p className="font-semibold mt-2">Indoor</p>
+                    <Link to="/collections/all?category=Living%20Room">Living Room</Link>
+                    <Link to="/collections/all?category=Bedroom">Bedroom</Link>
+                    <Link to="/collections/all?category=Dining+Room">Dining Room</Link>
+                    <p className="font-semibold mt-2">Outdoor</p>
+                    <Link to="/collections/all?category=Bench">Bench</Link>
+                    <Link to="/collections/all?category=Bergère">Bergère</Link>
+                    <Link to="/collections/all?category=Sofa%20%26%20Couch">Sofa & Couch</Link>
+                    <Link to="/collections/all?category=Table%20%26%20Chair">Table & Chair</Link>
+                    <Link to="/collections/all?category=Lamp">Lamp</Link>
+                    <Link to="/collections/all?category=Accessories">Accessories</Link>
+                    <Link to="/collections/all?category=Pouf">Pouf</Link>
+                    <Link to="/collections/all?category=Swing">Swing</Link>
+                  </div>
+                </details>
+                <details>
+                  <summary className="text-lg text-gray-700 cursor-pointer">Brands</summary>
+                  <div className="ml-4 space-y-1 text-sm text-gray-700">
+                    <Link to="/collectionsfermob">Fermob</Link>
+                    <Link to="/oltacatalogs">Olta</Link>
+                    <Link to="/collections/all?brand=SIFAS">Sifas</Link>
+                  </div>
+                </details>
               </nav>
             </div>
             <p className="text-sm text-gray-500">&copy; 2025 ACDStore</p>
