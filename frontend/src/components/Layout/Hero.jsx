@@ -42,14 +42,7 @@ const Hero = () => {
   return (
     <section
       ref={sectionRef}
-      className=""
-      style={{
-        width: '100vw',
-        height: '100vh',
-        position: 'relative',
-        overflow: 'hidden',
-        cursor: 'pointer',
-      }}
+      className="w-full min-h-[80vh] sm:min-h-screen relative overflow-hidden"
     >
       {videoList.map((video, index) => (
         <video
@@ -60,59 +53,43 @@ const Hero = () => {
           loop
           muted
           playsInline
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            opacity: index === activeIndex ? 1 : 0,
-            transition: 'opacity 0.3s ease',
-            zIndex: index === activeIndex ? 1 : 0,
-          }}
+          className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-300 ${
+            index === activeIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+          }`}
         />
       ))}
 
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          width: '100%',
-          zIndex: 10,
-        }}
-        className="bg-yellow/30 text-white px-8 py-4 flex items-center relative"
-      >
+      <div className="absolute bottom-0 w-full z-20 bg-black/40 text-white px-4 sm:px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-3 sm:space-y-0">
         <div className="flex-grow">
-          <p className="text-lg text-gray-300">News</p>
-          <h3 className="text-lg md:text-3xl font-semibold">
+          <p className="text-sm sm:text-lg text-gray-300 mb-1">News</p>
+          <h3 className="text-base sm:text-2xl md:text-3xl font-semibold leading-snug">
             {activeIndex === 0
               ? 'Discover Our New Season Furniture Collection'
               : 'Where Comfort Meets Contemporary Design'}
           </h3>
         </div>
 
-        <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center gap-4">
+        <div className="sm:absolute sm:left-1/2 sm:transform sm:-translate-x-1/2 flex items-center gap-3 pt-2 sm:pt-0">
           {[0, 1].map((index) => {
             const isActive = index === activeIndex;
             return (
               <div
                 key={index}
                 onClick={() => handleDotClick(index)}
-                className="w-8 h-8 relative flex items-center justify-center cursor-pointer"
+                className="w-7 h-7 sm:w-8 sm:h-8 relative flex items-center justify-center cursor-pointer touch-manipulation"
               >
                 <div
-                  className={`w-2 h-2 rounded-full ${
+                  className={`w-2.5 h-2.5 rounded-full ${
                     isActive ? 'bg-white' : 'bg-white opacity-50'
                   }`}
                 />
                 {isActive && (
-                  <svg className="absolute top-0 left-0 w-8 h-8" viewBox="0 0 32 32">
+                  <svg className="absolute top-0 left-0 w-7 h-7 sm:w-8 sm:h-8" viewBox="0 0 32 32">
                     <circle
                       cx="16"
                       cy="16"
                       r="14"
-                      stroke="black"
+                      stroke="white"
                       strokeWidth="2"
                       fill="none"
                       strokeLinecap="round"
