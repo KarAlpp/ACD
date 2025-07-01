@@ -68,9 +68,13 @@ const Navbar = () => {
                 onMouseLeave={() => setIsProductsOpen(false)}
                 className="relative"
               >
-                <button className="text-white text-2xl flex items-center pb-2 hover:text-gray-400 transition">
-                  Products 
-                </button>
+               <Link
+  to="/collections/all"
+  className="text-white text-2xl flex items-center pb-2 hover:text-gray-400 transition"
+>
+  Products
+</Link>
+
 
                 {isProductsOpen && (
                   <div className="absolute left-1/2 transform -translate-x-1/2 mt-0 w-screen max-w-[1200px] bg-white/80 shadow-xl rounded-md p-8 grid grid-cols-3 gap-8 z-50">
@@ -142,9 +146,9 @@ const Navbar = () => {
                       <img src="https://assets.pbimgs.com/pbimgs/rk/images/dp/wcm/202452/0482/fermob-metal-outdoor-bistro-chairs-set-of-2-o.jpg" alt="Fermob preview" className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105 rounded-md" />
                       <span className="mt-3 block text-lg font-semibold text-gray-800 group-hover:text-black">Fermob</span>
                     </Link>
-                    <Link to="/collections/all?brand=OLTA" className="group overflow-hidden rounded-md relative block text-center">
-                      <img src="https://gardenandpatio.co.uk/cdn/shop/collections/Glatz-2021-Brochure-Retail-Email-e1620917534302.jpg?v=1709128854&width=1190" alt="Glatz preview" className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105 rounded-md" />
-                      <span className="mt-3 block text-lg font-semibold text-gray-800 group-hover:text-black">Glatz</span>
+                    <Link to="/oltacatalogs" className="group overflow-hidden rounded-md relative block text-center">
+                      <img src="https://olta.eu/wp-content/uploads/2024/09/KELLY-1_BOHO-5299_MAXWELL-15-15-N-15-15-P103x82__COLOURWASH5432_LCOLOURWASH5433_3-scaled.jpg" alt="Glatz preview" className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105 rounded-md" />
+                      <span className="mt-3 block text-lg font-semibold text-gray-800 group-hover:text-black">Olta</span>
                     </Link>
                     <Link to="/collections/all?brand=SIFAS" className="group overflow-hidden rounded-md relative block text-center">
                       <img src="https://www.sifas.com/wp-content/uploads/2024/04/sifas-komfy-canape-fauteuil.jpg" alt="Sifas preview" className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-105 rounded-md" />
