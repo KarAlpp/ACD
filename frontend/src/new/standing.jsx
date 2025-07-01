@@ -1,107 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
 
 const Standing = () => {
-  const images = [
-    "https://patiobalconyoutdoor.com.au/cdn/shop/products/FermobBistro96cmTable.jpg?v=1734337389",
-    "https://patiobalconyoutdoor.com.au/cdn/shop/products/FermobBistro96cmtableWillowGreen.jpg?v=1734337389",
-    "https://patiobalconyoutdoor.com.au/cdn/shop/files/w1608h1000zcZCq85_VincentSheppard_KodoCollection_extra3_1608x1000_1d8cf25b-7375-4254-8e23-409969c20e12.jpg?v=1712754783",
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const overlayClass = `
-    absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center
-    text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10
-  `;
-
-  const previewText = (label) => (
-    <div className={overlayClass}>
-      <h2 className="text-2xl font-semibold">{label}</h2>
-      <div className="w-8 h-px bg-white my-2"></div>
-      <p className="text-xs tracking-widest uppercase">Preview</p>
+  const overlay = (title, subtitle) => (
+    <div className="absolute bottom-0 left-0 w-full px-4 pb-4 text-white bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10">
+      <h2 className="text-xl font-extrabold">{title}</h2>
+      <p className="text-sm">{subtitle}</p>
     </div>
   );
 
-  const wrapper = (src, type, label, width, height) => {
-    return (
-      <div
-        onClick={() => window.location.href = "/collectionsfermob"}
-        className={`relative group rounded-xl overflow-hidden ${width} ${height} cursor-pointer`}
-      >
-        {type === "video" ? (
-          <video
-            src={src}
-            className="w-full h-full object-cover object-center transition-all duration-500"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-        ) : type === "iframe" ? (
-          <iframe
-            src={src}
-            className="w-full h-full object-cover object-center transition-all duration-500"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title={label}
-          />
-        ) : (
-          <img
-            src={src}
-            className="w-full h-full object-cover object-center transition-all duration-500"
-            alt={label}
-          />
-        )}
-        {previewText(label)}
-      </div>
-    );
-  };
+  const Card = ({ src, label, subtitle, isVideo }) => (
+    <div
+      onClick={() => window.location.href = "/collectionsfermob"}
+      className="relative group rounded-xl overflow-hidden cursor-pointer aspect-[4/3]"
+    >
+      {isVideo ? (
+        <video
+          src={src}
+          className="w-full h-full object-cover transition-all duration-500"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+      ) : (
+        <img
+          src={src}
+          alt={label}
+          className="w-full h-full object-cover transition-all duration-500"
+        />
+      )}
+      {overlay(label, subtitle)}
+    </div>
+  );
 
   return (
-    <div className="relative w-full flex justify-center bg-gray-200 py-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-4 grid-rows-3 gap-4">
+    <div className="bg-white py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Sol Üst - Aksesuar */}
+        <Card
+          src="https://www.fermob.com/mediatheque/2_produits/Accroche%20coeurs/3-ambiance/ACCROCHE-COEURS_CACTUS_COLOR_MIX_REY_VISUEL2022_SARAH_BALHADERE.jpg?optimize=medium&fit=bounds&height=700&width=700"
+          label="AKSESUAR"
+          subtitle="Dekoratif objeler."
+        />
 
-          {/* Sol: Video - 2 sütun, 3 satır */}
-          <div className="col-span-2 row-span-3">
-            {wrapper("/videos/ati.mp4", "video", "Fermob Catalogue", "w-120", "h-200")}
-          </div>
+        {/* Sol Alt - Aydınlatma */}
+        <Card
+          src="https://patiobalconyoutdoor.com.au/cdn/shop/products/FermobBalad25cmAcapulcoBlue.jpg?v=1738313184"
+          label="AYDINLATMA"
+          subtitle="Aydınlatma çözümleri."
+        />
 
-          {/* Sağ üst: Değişen görsel - 2 sütun, 2 satır */}
-          <div className="col-span-2 row-span-2">
-            {wrapper(images[currentIndex], "image", "Fermob Catalogue", "w-full", "h-full")}
-          </div>
-
-          {/* Sağ alt 1: Küçük görsel */}
-          <div className="col-span-1 row-span-1">
-            {wrapper(
-              "https://patiobalconyoutdoor.com.au/cdn/shop/products/FermobBalad25cmAcapulcoBlue.jpg?v=1738313184",
-              "image",
-              "Fermob Catalogue",
-              "w-full",
-              "h-[200px]"
-            )}
-          </div>
-
-          {/* Sağ alt 2: Diğer görsel */}
-          <div className="col-span-1 row-span-1">
-            {wrapper(
-              "https://www.fermob.com/mediatheque/2_produits/SO%20O/3-ambiance/MOOON_CARBONE_SOO_GRIS_LAPILI_TARBOURIECH_VISUELS2023_ROMAIN_RICARD.jpg?optimize=medium&fit=bounds&height=700&width=700",
-              "image",
-              "Fermob Catalogue",
-              "w-full",
-              "h-[200px]"
-            )}
-          </div>
-
-        </div>
+        {/* Sağ Büyük - Mobilya (Video) */}
+        <Card
+          src="/videos/ati.mp4"
+          label="MOBİLYA"
+          subtitle="Ev, ofis mobilyaları."
+          isVideo={true}
+        />
       </div>
     </div>
   );

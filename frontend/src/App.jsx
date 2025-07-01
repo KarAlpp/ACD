@@ -27,6 +27,7 @@ import Catalogs from './pages/Catalogs';
 import CatalogDetails from './pages/CatalogDetails';
 import FermobDetails from './pages/FermobDetails';
 import OltaProductDetail from './oltaz/OltaProductDetail';
+import Oltacatalogs from './pages/Oltacatalogs';
 const App = () => {
   return (
     <Provider store={store}>
@@ -53,6 +54,7 @@ const App = () => {
 <Route path="product/:id" element={<FermobDetails />} />
 <Route path="/olta" element={<OltaProductDetail />} />
               </Route>
+            <Route path="/oltacatalogs" element={<Oltacatalogs />} />
 
             {/* Admin Routes */}
             <Route

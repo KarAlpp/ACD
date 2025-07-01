@@ -47,7 +47,8 @@ const Home = () => {
         <div>
             
             <Hero />
-            
+                        <TopFurniture />
+
             <Bestseller  /> 
 
             <Collections />
@@ -59,7 +60,6 @@ const Home = () => {
             <Showcase />
             <MonthlyClubSection /> 
             <MayAlsoLike />
-            <TopFurniture />
             
             <FeaturedCollection />
         </div>
