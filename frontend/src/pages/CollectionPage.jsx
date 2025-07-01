@@ -105,13 +105,18 @@ const CollectionPage = () => {
       <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row">
         {/* Sidebar */}
         <div
-          ref={sidebarRef}
-          className={`${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 z-50 left-0 w-72 bg-white border-r border-gray-200 overflow-y-auto transition-transform duration-300 lg:translate-x-0 lg:static lg:block lg:h-[calc(100vh-72px)] lg:sticky lg:top-[72px]`}
-        >
-          <div className="p-4">
-            <FilterSidebar isSidebarOpen={isSidebarOpen} />
-          </div>
-        </div>
+  ref={sidebarRef}
+  className={`
+    fixed inset-y-0 left-0 z-50 
+    w-full max-w-sm 
+    bg-white border-r border-gray-200 overflow-y-auto 
+    transform transition-transform duration-300 
+    ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
+    lg:translate-x-0 lg:static lg:block lg:h-[calc(100vh-72px)] lg:sticky lg:top-[72px]`}
+>
+  <FilterSidebar />
+</div>
+
 
         {/* Main Content */}
         <div className="flex-1">
