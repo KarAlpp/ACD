@@ -106,9 +106,7 @@ const CollectionPage = () => {
         {/* Sidebar */}
         <div
           ref={sidebarRef}
-          className={`${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
-            fixed inset-y-0 z-50 left-0 w-72 bg-white border-r border-gray-200 overflow-y-auto transition-transform duration-300
-            lg:translate-x-0 lg:static lg:block lg:h-[calc(100vh-72px)] lg:sticky lg:top-[72px]`}
+          className={`${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 z-50 left-0 w-72 bg-white border-r border-gray-200 overflow-y-auto transition-transform duration-300 lg:translate-x-0 lg:static lg:block lg:h-[calc(100vh-72px)] lg:sticky lg:top-[72px]`}
         >
           <div className="p-4">
             <FilterSidebar isSidebarOpen={isSidebarOpen} />
@@ -122,7 +120,7 @@ const CollectionPage = () => {
             <div className="px-4 lg:px-6 py-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <button 
+                  <button
                     onClick={toggleSidebar}
                     className="lg:hidden p-2 hover:bg-gray-100 rounded"
                   >
@@ -184,8 +182,8 @@ const CollectionPage = () => {
             ) : (
               <div className={`grid ${getGridClasses()} gap-4 sm:gap-5 md:gap-6`}>
                 {products.map((product, index) => {
-                  const images = product.images && typeof product.images === 'object' 
-                    ? Object.values(product.images) 
+                  const images = product.images && typeof product.images === 'object'
+                    ? Object.values(product.images)
                     : [];
                   const primaryImage = images[0] || product.image || '/default-image.jpg';
                   const secondaryImage = images[1];
@@ -204,12 +202,8 @@ const CollectionPage = () => {
                           <img
                             src={primaryImage}
                             alt={product.altText || product.name || 'Product'}
-                            className={`w-full h-full object-contain transition-all duration-500 ${
-                              hasSecondImage ? 'group-hover:opacity-0' : 'group-hover:scale-105'
-                            }`}
-                            onError={(e) => {
-                              e.target.src = '/default-image.jpg';
-                            }}
+                            className={`w-full h-full object-contain transition-all duration-500 ${hasSecondImage ? 'group-hover:opacity-0' : 'group-hover:scale-105'}`}
+                            onError={(e) => { e.target.src = '/default-image.jpg'; }}
                           />
                           {hasSecondImage && (
                             <img
@@ -234,11 +228,7 @@ const CollectionPage = () => {
                           <p className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wide">
                             {product.brand || 'Brand'}
                           </p>
-                          {product.price && (
-                            <p className="text-xs sm:text-sm font-semibold text-gray-900 mt-1">
-                              ₺{product.price}
-                            </p>
-                          )}
+                          {/* Price kaldırıldı */}
                         </div>
                       </Link>
                     </div>
@@ -251,7 +241,7 @@ const CollectionPage = () => {
       </div>
 
       {isSidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-25 z-40 lg:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
