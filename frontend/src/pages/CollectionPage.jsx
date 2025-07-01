@@ -28,13 +28,13 @@ const CollectionPage = () => {
   const getGridClasses = () => {
     switch (viewMode) {
       case 'grid-3':
-        return 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3';
+        return 'grid-cols-2 sm:grid-cols-2 md:grid-cols-3';
       case 'grid-4':
-        return 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4';
+        return 'grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4';
       case 'grid-6':
-        return 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6';
+        return 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6';
       default:
-        return 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4';
+        return 'grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4';
     }
   };
 
@@ -101,8 +101,8 @@ const CollectionPage = () => {
   }, []);
 
   return (
-    <div className="bg-white min-h-screen pt-[160px] px-2">
-      <div className="max-w-screen-xl mx-auto flex">
+    <div className="bg-white min-h-screen pt-[120px] sm:pt-[140px] px-2">
+      <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row">
         {/* Sidebar */}
         <div
           ref={sidebarRef}
@@ -117,22 +117,22 @@ const CollectionPage = () => {
         <div className="flex-1">
           {/* Header */}
           <div className="border-b border-gray-200 bg-white sticky top-0 z-40">
-            <div className="px-4 lg:px-6 py-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
+            <div className="px-2 sm:px-4 lg:px-6 py-2 sm:py-3">
+              <div className="flex flex-wrap gap-3 sm:gap-4 items-center justify-between">
+                <div className="flex items-center gap-3 sm:gap-4">
                   <button
                     onClick={toggleSidebar}
                     className="lg:hidden p-2 hover:bg-gray-100 rounded"
                   >
                     <FaFilter className="w-4 h-4" />
                   </button>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-xs sm:text-sm text-gray-600">
                     {loading ? 'Yükleniyor...' : `${products.length} ürünün 1-24 arası gösteriliyor`}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-4">
-                  <div className="hidden md:flex items-center gap-1 border border-gray-200 rounded p-1">
+                <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-end sm:justify-start">
+                  <div className="hidden sm:flex items-center gap-1 border border-gray-200 rounded p-1">
                     <button
                       onClick={() => setViewMode('grid-3')}
                       className={`p-2 rounded ${viewMode === 'grid-3' ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
@@ -156,7 +156,7 @@ const CollectionPage = () => {
                       </div>
                     </button>
                   </div>
-                  <div className="text-sm text-gray-600">
+                  <div className="text-xs sm:text-sm text-gray-600 hidden sm:block">
                     Göster: <span className="font-medium">24</span> / <span className="font-medium">48</span>
                   </div>
                   <SortOptions value={sortBy} onChange={handleSortChange} />
@@ -166,7 +166,7 @@ const CollectionPage = () => {
           </div>
 
           {/* Products Grid */}
-          <div className="px-4 lg:px-6 py-5">
+          <div className="px-2 sm:px-4 lg:px-6 py-4 sm:py-5">
             {loading ? (
               <div className="flex justify-center items-center py-20">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
@@ -180,7 +180,7 @@ const CollectionPage = () => {
                 <p className="text-gray-500">Ürün bulunamadı</p>
               </div>
             ) : (
-              <div className={`grid ${getGridClasses()} gap-4 sm:gap-5 md:gap-6`}>
+              <div className={`grid ${getGridClasses()} gap-3 sm:gap-4 md:gap-6`}>
                 {products.map((product, index) => {
                   const images = product.images && typeof product.images === 'object'
                     ? Object.values(product.images)
@@ -190,7 +190,7 @@ const CollectionPage = () => {
                   const hasSecondImage = !!secondaryImage;
 
                   return (
-                    <div key={product._id || index} className="group relative min-h-[320px] sm:min-h-[360px]">
+                    <div key={product._id || index} className="group relative min-h-[300px] sm:min-h-[360px]">
                       <div className="absolute top-2 left-2 z-10">
                         <span className="bg-yellow-300 text-[10px] font-medium px-1.5 py-0.5 rounded-sm">
                           YENİ
@@ -240,6 +240,7 @@ const CollectionPage = () => {
         </div>
       </div>
 
+      {/* Mobile overlay when sidebar is open */}
       {isSidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-25 z-40 lg:hidden"
