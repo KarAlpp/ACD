@@ -62,19 +62,18 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <div className="flex space-x-10 items-center">
+            <div className="hidden lg:flex space-x-10 items-center">
               <div
                 onMouseEnter={() => setIsProductsOpen(true)}
                 onMouseLeave={() => setIsProductsOpen(false)}
                 className="relative"
               >
-               <Link
-  to="/collections/all"
-  className="text-white text-2xl flex items-center pb-2 hover:text-gray-400 transition"
->
-  Products
-</Link>
-
+                <Link
+                  to="/collections/all"
+                  className="text-white text-2xl flex items-center pb-2 hover:text-gray-400 transition"
+                >
+                  Products
+                </Link>
 
                 {isProductsOpen && (
                   <div className="absolute left-1/2 transform -translate-x-1/2 mt-0 w-screen max-w-[1200px] bg-white/80 shadow-xl rounded-md p-8 grid grid-cols-3 gap-8 z-50">
@@ -185,7 +184,7 @@ const Navbar = () => {
 
       {navDrawerOpen && (
         <div className="fixed inset-0 z-50 flex">
-          <div className="w-1/2 bg-white/80 backdrop-blur-md shadow-xl p-6 flex flex-col justify-between border-r border-gray-200">
+          <div className="w-full sm:w-1/2 bg-white/80 backdrop-blur-md shadow-xl p-6 flex flex-col justify-between border-r border-gray-200">
             <div className="flex justify-end">
               <button onClick={() => setNavDrawerOpen(false)}>
                 <IoMdClose className="h-6 w-6 text-gray-600" />
@@ -202,7 +201,7 @@ const Navbar = () => {
             </div>
             <p className="text-sm text-gray-500">&copy; 2025 ACDStore</p>
           </div>
-          <div className="w-1/2"></div>
+          <div className="hidden sm:block w-1/2"></div>
         </div>
       )}
     </>
