@@ -104,15 +104,14 @@ const CollectionPage = () => {
     <div className="bg-white min-h-screen pt-[120px] sm:pt-[140px] px-2">
       <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row">
         {/* Sidebar */}
-        <div
+     <div
   ref={sidebarRef}
   className={`
-    fixed inset-y-0 left-0 z-50 
-    w-full max-w-sm 
-    bg-white border-r border-gray-200 overflow-y-auto 
-    transform transition-transform duration-300 
-    translate-x-0 
-    lg:translate-x-0 lg:static lg:block lg:h-[calc(100vh-72px)] lg:sticky lg:top-[72px]`}
+    w-full max-w-sm
+    bg-white border-r border-gray-200 overflow-y-auto
+    lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 
+    lg:transform lg:transition-transform lg:duration-300 
+    lg:translate-x-0 lg:h-[calc(100vh-72px)] lg:sticky lg:top-[72px]`}
 >
 
   <FilterSidebar />
