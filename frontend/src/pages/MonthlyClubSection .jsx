@@ -16,7 +16,7 @@ const MonthlyClubSection = () => {
   useEffect(() => {
     const section = sectionRef.current;
 
-    // Scroll ile opacity ve y animasyonu
+    // Scroll animasyonu
     [topImageRef, topTextRef, bottomTextRef, bottomImageRef].forEach((ref) => {
       gsap.fromTo(
         ref.current,
@@ -34,8 +34,11 @@ const MonthlyClubSection = () => {
       );
     });
 
-    // Mouse hareketi ile parallax
+    // Sadece geniş ekranlarda parallax
+    const isDesktop = window.innerWidth > 768;
     const handleMouseMove = (e) => {
+      if (!isDesktop) return;
+
       const { clientX, clientY } = e;
       const { width, height, left, top } = section.getBoundingClientRect();
       const xPos = (clientX - left - width / 2) / width;
@@ -84,7 +87,6 @@ const MonthlyClubSection = () => {
       className="bg-[#eee6f2] py-16 px-4 flex flex-col items-center"
     >
       <div className="w-full max-w-6xl relative z-0">
-
         {/* ÜST KISIM */}
         <div className="flex flex-col md:flex-row gap-6 items-start relative z-10">
           <img
@@ -94,34 +96,42 @@ const MonthlyClubSection = () => {
             className="rounded-xl w-full md:w-1/2 object-cover"
           />
           <div ref={topTextRef} className="w-full md:w-1/2">
-            <h2 className="text-2xl font-bold mb-2">
-              <span className="bg-yellow-300 px-1">Visit</span>  our design studio to experience true craftsmanship
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">
+              <span className="bg-yellow-300 px-1">Visit</span> our design
+              studio to experience true craftsmanship
             </h2>
-            <p className="text-sm text-gray-800 mb-4">
-            You can also visit us in person at our design studio to experience our full collection and speak with our product specialists
-
+            <p className="text-sm md:text-base text-gray-800 mb-4">
+              You can also visit us in person at our design studio to experience
+              our full collection and speak with our product specialists
             </p>
-            <a href="/ContactUs" className="bg-[#5874BF] hover:bg-[#405d96] text-white px-5 py-2 rounded-full text-sm transition">
-    CONTACT US
-  </a>
+            <a
+              href="/ContactUs"
+              className="bg-[#5874BF] hover:bg-[#405d96] text-white px-5 py-2 rounded-full text-sm transition"
+            >
+              CONTACT US
+            </a>
           </div>
         </div>
 
         {/* ALT KISIM */}
-        <div className="flex flex-col md:flex-row gap-6 items-end mt-[-60px] relative z-0">
+        <div className="flex flex-col md:flex-row gap-6 items-end mt-[-40px] relative z-0">
           <div ref={bottomTextRef} className="w-full md:w-1/2">
-          <h2 className="text-xl font-bold mb-2">Explore  <span className="bg-yellow-300 px-1">Partner</span> Collections</h2>
-<p className="text-sm text-gray-800 mb-4">
-  Discover signature pieces crafted by our trusted brand partners — selected to complement our design philosophy and elevate your living space.
-</p>
-<li>
-  <a href="/collections/all?brand=FERMOB" className="bg-[#5874BF] hover:bg-[#405d96] text-white px-5 py-2 rounded-full text-sm transition">
-    FIND YOUR PERFECT FIT
-  </a>
-</li>
-
+            <h2 className="text-xl md:text-2xl font-bold mb-2">
+              Explore <span className="bg-yellow-300 px-1">Partner</span>{" "}
+              Collections
+            </h2>
+            <p className="text-sm md:text-base text-gray-800 mb-4">
+              Discover signature pieces crafted by our trusted brand partners —
+              selected to complement our design philosophy and elevate your
+              living space.
+            </p>
+            <a
+              href="/collections/all?brand=FERMOB"
+              className="bg-[#5874BF] hover:bg-[#405d96] text-white px-5 py-2 rounded-full text-sm transition"
+            >
+              FIND YOUR PERFECT FIT
+            </a>
           </div>
-
           <img
             ref={bottomImageRef}
             src="/photos/top.jpg"
