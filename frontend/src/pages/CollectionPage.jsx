@@ -111,9 +111,10 @@ const CollectionPage = () => {
     w-full max-w-sm 
     bg-white border-r border-gray-200 overflow-y-auto 
     transform transition-transform duration-300 
-    ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
+    translate-x-0 
     lg:translate-x-0 lg:static lg:block lg:h-[calc(100vh-72px)] lg:sticky lg:top-[72px]`}
 >
+
   <FilterSidebar />
 </div>
 
