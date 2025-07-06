@@ -183,52 +183,45 @@ const Navbar = () => {
       <CardDrawer drawerOpen={drawerOpen} toggleCartDrawer={toggleCartDrawer} />
 
       {navDrawerOpen && (
-        <div className="fixed inset-0 z-50 flex">
-          <div className="w-full sm:w-1/2 bg-white/80 backdrop-blur-md shadow-xl p-6 flex flex-col justify-between border-r border-gray-200">
-            <div className="flex justify-end">
-              <button onClick={() => setNavDrawerOpen(false)}>
-                <IoMdClose className="h-6 w-6 text-gray-600" />
-              </button>
+  <div className="fixed inset-0 z-50 flex">
+    <div className="w-full sm:w-1/2 bg-white/80 backdrop-blur-md shadow-xl p-6 flex flex-col justify-between border-r border-gray-200">
+      <div className="flex justify-end">
+        <button onClick={() => setNavDrawerOpen(false)}>
+          <IoMdClose className="h-6 w-6 text-gray-600" />
+        </button>
+      </div>
+      <div>
+        <h2 className="text-2xl font-semibold mb-6 text-gray-800">Menü</h2>
+        <nav className="space-y-4">
+          <Link to="/" className="block text-lg text-gray-700 hover:text-gray-900">Anasayfa</Link>
+          <Link to="/collections/all?door=indoor" className="block text-lg text-gray-700 hover:text-gray-900">Ev Dekorasyon</Link>
+          <Link to="/collections/all?door=outdoor" className="block text-lg text-gray-700 hover:text-gray-900">Bahçe Dekorasyon</Link>
+
+ <details>
+  <summary className="text-lg text-gray-700 cursor-pointer">Products</summary>
+  <div className="ml-4 mt-2 space-y-2 text-sm text-gray-700">
+    <Link to="/collections/all?door=Indoor" className="block hover:text-black">Indoor</Link>
+    <Link to="/collections/all?door=Outdoor" className="block hover:text-black">Outdoor</Link>
+  </div>
+</details>
+
+
+          <details>
+            <summary className="text-lg text-gray-700 cursor-pointer">Brands</summary>
+            <div className="ml-4 mt-2 space-y-1 text-sm text-gray-700">
+              <Link to="/collectionsfermob">Fermob</Link>
+              <Link to="/oltacatalogs">Olta</Link>
+              <Link to="/collections/all?brand=SIFAS">Sifas</Link>
             </div>
-            <div>
-              <h2 className="text-2xl font-semibold mb-6 text-gray-800">Menü</h2>
-              <nav className="space-y-4">
-                <Link to="/" className="block text-lg text-gray-700 hover:text-gray-900">Anasayfa</Link>
-                <Link to="/collections/all?door=indoor" className="block text-lg text-gray-700 hover:text-gray-900">Ev Dekorasyon</Link>
-                <Link to="/collections/all?door=outdoor" className="block text-lg text-gray-700 hover:text-gray-900">Bahçe Dekorasyon</Link>
-                <details>
-                  <summary className="text-lg text-gray-700 cursor-pointer">Products</summary>
-                  <div className="ml-4 space-y-1 text-sm text-gray-700">
-                    <p className="font-semibold mt-2">Indoor</p>
-                    <Link to="/collections/all?category=Living%20Room">Living Room</Link>
-                    <Link to="/collections/all?category=Bedroom">Bedroom</Link>
-                    <Link to="/collections/all?category=Dining+Room">Dining Room</Link>
-                    <p className="font-semibold mt-2">Outdoor</p>
-                    <Link to="/collections/all?category=Bench">Bench</Link>
-                    <Link to="/collections/all?category=Bergère">Bergère</Link>
-                    <Link to="/collections/all?category=Sofa%20%26%20Couch">Sofa & Couch</Link>
-                    <Link to="/collections/all?category=Table%20%26%20Chair">Table & Chair</Link>
-                    <Link to="/collections/all?category=Lamp">Lamp</Link>
-                    <Link to="/collections/all?category=Accessories">Accessories</Link>
-                    <Link to="/collections/all?category=Pouf">Pouf</Link>
-                    <Link to="/collections/all?category=Swing">Swing</Link>
-                  </div>
-                </details>
-                <details>
-                  <summary className="text-lg text-gray-700 cursor-pointer">Brands</summary>
-                  <div className="ml-4 space-y-1 text-sm text-gray-700">
-                    <Link to="/collectionsfermob">Fermob</Link>
-                    <Link to="/oltacatalogs">Olta</Link>
-                    <Link to="/collections/all?brand=SIFAS">Sifas</Link>
-                  </div>
-                </details>
-              </nav>
-            </div>
-            <p className="text-sm text-gray-500">&copy; 2025 ACDStore</p>
-          </div>
-          <div className="hidden sm:block w-1/2"></div>
-        </div>
-      )}
+          </details>
+        </nav>
+      </div>
+      <p className="text-sm text-gray-500">&copy; 2025 ACDStore</p>
+    </div>
+    <div className="hidden sm:block w-1/2"></div>
+  </div>
+)}
+
     </>
   );
 };
