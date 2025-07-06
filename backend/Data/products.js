@@ -1,60 +1,36 @@
 const products = [
   {
-    name: "YUNOS - SOLAR FLOOR LAMP H.180 CM",
+    name: "willow",
     description: "A high-quality  chair with a minimalist design.",
     price: 510,
     discountPrice: 265.99,
     countInStock: 15,
-    ref: "3297",
-    category: "Lamp",
-    brand: "Fermob",
+    ref: "23",
+    category: "Sofa & Couch",
+    brand: "Olta",
 colors: [
-"main",
-"Black Cherry",
-"Clay Grey",
-"Lapilli Grey",
-"Gingerbread",
-"Rosemary",
+
+
+"2li koltuk",
+"4li koltuk",
+
+
 "Technical",
 
 
 ],
 
-    packings: ["x1"],
-    collection: "YUNOS",
-    material: "glass",
-    door: ["outdoor"],
+    packings: ["1"],
+    collection: "willow",
+    material: "cushion",
+    door: ["indoor"],
     images: {
-"main": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/products/3297.jpg",
-"Cotton white": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_01.jpg",
-"Deep blue": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_92.jpg",
-"Acapulco blue": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_21.jpg",
-"Poppy": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_67.jpg",
-"Deep blue": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_92.jpg",
-"Blue canard": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_85.jpg",
-"Maya blue": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_e1.jpg",
-"Cactus": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_82.jpg",
-"Anthracite" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_47.jpg",
-"Black Cherry" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_b9.jpg",
-"Frosted Lemon" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_a6.jpg",
-"Clay Grey" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_a5.jpg",
-"Lapilli Grey " : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_c7.jpg",
-"Storm Grey " : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_26.jpg",
-"Marshmallow" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_d1.jpg",
-"Ice mint" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_a7.jpg",
-"Honey" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_c6.jpg",
-"Nutmeg" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_14.jpg",
-"Red ochre" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_20.jpg",
-"Candied orange " : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_e2.jpg",
-"Gingerbread" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_e2.jpg",
-"Pesto" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_d3.jpg",
-"Chili" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_43.jpg",
-"Rosemary" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_48.jpg",
-"Liquorice" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_42.jpg",
-"Tonka" : " https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_e3.jpg",
-"Cedar green" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_02.jpg",
-"Willow Green" : "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/groups/3297_65.jpg",
-"Technical": "https://welcome-orders.fermob.com/iso_datasources/synchro00010931/album/products/vuesecondaire/3297_vuesecondaire_0.jpg"
+
+"2li koltuk": "https://olta.eu/wp-content/uploads/2023/10/WILLOW-4z_WICKER-5065_4-1062x700.jpg",
+"4li koltuk": "https://olta.eu/wp-content/uploads/2023/10/WILLOW-35z-L2Hz-STAUNCH-5046_11-1062x700.jpg",
+
+
+"technical": "https://olta.eu/wp-content/uploads/2024/09/PICTOGRAMS_EN_OLTA_WILLOW_2025-01-22-09-scaled.png",
 
 
     },
@@ -69,10 +45,9 @@ colors: [
     metaDescription: "Buy this modern wooden table for your home, available in different colors.",
     metaKeywords: ["wooden table", "furniture", "home decor"],
     technicalSheet: [
-"Weight: 8",
-"Luminous flux :800",
-"Min. Battery life (100%) :10",
-"2",
+
+"-"
+,
 
     ],
     dimensions: {
