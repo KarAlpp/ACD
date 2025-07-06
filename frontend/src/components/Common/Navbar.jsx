@@ -198,17 +198,47 @@ const Navbar = () => {
           <details>
             <summary className="text-lg font-medium text-gray-800 cursor-pointer">Products</summary>
             <div className="ml-4 mt-2 space-y-2 text-sm text-gray-700">
-              <Link to="/collections/all?door=Indoor" className="block hover:text-black">Indoor</Link>
-              <Link to="/collections/all?door=Outdoor" className="block hover:text-black">Outdoor</Link>
+              <Link
+                to="/collections/all?door=Indoor"
+                onClick={() => setNavDrawerOpen(false)}
+                className="block hover:text-black"
+              >
+                Indoor
+              </Link>
+              <Link
+                to="/collections/all?door=Outdoor"
+                onClick={() => setNavDrawerOpen(false)}
+                className="block hover:text-black"
+              >
+                Outdoor
+              </Link>
             </div>
           </details>
 
           <details>
             <summary className="text-lg font-medium text-gray-800 cursor-pointer">Brands</summary>
             <div className="ml-4 mt-2 space-y-2 text-sm text-gray-700">
-              <Link to="/collectionsfermob" className="block hover:text-black">Fermob</Link>
-              <Link to="/oltacatalogs" className="block hover:text-black">Olta</Link>
-              <Link to="/collections/all?brand=SIFAS" className="block hover:text-black">Sifas</Link>
+              <Link
+                to="/collectionsfermob"
+                onClick={() => setNavDrawerOpen(false)}
+                className="block hover:text-black"
+              >
+                Fermob
+              </Link>
+              <Link
+                to="/oltacatalogs"
+                onClick={() => setNavDrawerOpen(false)}
+                className="block hover:text-black"
+              >
+                Olta
+              </Link>
+              <Link
+                to="/collections/all?brand=SIFAS"
+                onClick={() => setNavDrawerOpen(false)}
+                className="block hover:text-black"
+              >
+                Sifas
+              </Link>
             </div>
           </details>
         </nav>
@@ -219,6 +249,7 @@ const Navbar = () => {
     <div className="hidden sm:block w-1/2"></div>
   </div>
 )}
+
 
 
     </>
